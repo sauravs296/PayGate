@@ -39,8 +39,8 @@ const NETWORK =
 
 const USDC_ASSET =
   process.env.STELLAR_NETWORK === "pubnet"
-    ? USDC_PUBNET_ADDRESS
-    : USDC_TESTNET_ADDRESS;
+    ? "USDC-GA5ZSEJYB37JRC52ZGMCEVTHSYFSENXCIIUVE7O5T5ZRVQQV55M22VMA"
+    : "native";
 
 /**
  * Build the paymentRequirements object that describes what the caller must pay.
@@ -50,14 +50,17 @@ export function buildPaymentRequirements(opts: {
   priceUsdc: string;
   payTo: string; // treasury G... address
 }): PaymentRequirements {
+  // Convert decimal USDC to atomic units (7 decimals)
+  const amountAtomic = Math.floor(parseFloat(opts.priceUsdc) * 10_000_000).toString();
+
   return {
     scheme: "exact",
     network: NETWORK,
-    amount: opts.priceUsdc,
+    amount: amountAtomic,
     payTo: opts.payTo,
     maxTimeoutSeconds: 60,
     asset: USDC_ASSET,
-    extra: { name: "USDC", version: "1" },
+    extra: { name: "USDC", version: "1", areFeesSponsored: true },
   };
 }
 

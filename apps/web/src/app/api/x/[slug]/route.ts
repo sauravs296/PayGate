@@ -22,6 +22,7 @@ import { getActiveApiBySlug } from "@/lib/db/apis";
 import { logApiCall } from "@/lib/db/calls";
 import { pushToFeed, incrementEarningsCache, incrementCallCount } from "@/lib/feed";
 import { ratelimit } from "@/lib/ratelimit";
+import { logReceiptOnChain } from "@/lib/stellar/soroban";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -131,6 +132,13 @@ export async function GET(req: NextRequest, { params }: Params) {
     incrementEarningsCache(api.id, Number(api.priceUsdc)),
     incrementCallCount(api.id),
   ]);
+
+  // Non-blocking: write receipt to Soroban contract as a side log
+  logReceiptOnChain({
+    callerWallet: paymentResult.callerWallet,
+    apiId: api.id,
+    amountUsdc: Number(api.priceUsdc),
+  }).catch((err) => console.error("On-chain log failed:", err));
 
   // ── 7. Return the proxied data ─────────────────────────────────────────────
   return NextResponse.json(upstreamData, {
