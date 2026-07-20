@@ -20,9 +20,10 @@ fn setup() -> (Env, ReceiptVerifierClient<'static>) {
 fn records_and_verifies_a_receipt() {
     let (env, client) = setup();
     let caller = Address::generate(&env);
+    let admin = Address::generate(&env);
     let api_id = String::from_str(&env, "cricket-predictor");
 
-    let ts = client.record_receipt(&caller, &api_id, &2_000_000i128); // $0.002 USDC
+    let ts = client.record_receipt(&admin, &caller, &api_id, &2_000_000i128); // $0.002 USDC
     assert!(client.has_receipt(&caller, &api_id, &ts));
 }
 
@@ -31,11 +32,12 @@ fn records_and_verifies_a_receipt() {
 fn rejects_duplicate_receipt_in_same_ledger() {
     let (env, client) = setup();
     let caller = Address::generate(&env);
+    let admin = Address::generate(&env);
     let api_id = String::from_str(&env, "cricket-predictor");
 
-    client.record_receipt(&caller, &api_id, &2_000_000i128);
+    client.record_receipt(&admin, &caller, &api_id, &2_000_000i128);
     // Second call with identical (caller, api_id, timestamp) must panic
-    client.record_receipt(&caller, &api_id, &2_000_000i128);
+    client.record_receipt(&admin, &caller, &api_id, &2_000_000i128);
 }
 
 #[test]
@@ -56,8 +58,9 @@ fn rejects_receipt_without_caller_authorization() {
     let client = ReceiptVerifierClient::new(&env, &contract_id);
 
     let caller = Address::generate(&env);
+    let admin = Address::generate(&env);
     let api_id = String::from_str(&env, "cricket-predictor");
 
-    // Should panic: caller has not authorised this invocation
-    client.record_receipt(&caller, &api_id, &2_000_000i128);
+    // Should panic: admin has not authorised this invocation
+    client.record_receipt(&admin, &caller, &api_id, &2_000_000i128);
 }

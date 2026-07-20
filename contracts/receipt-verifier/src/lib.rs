@@ -23,13 +23,13 @@ pub struct ReceiptVerifier;
 impl ReceiptVerifier {
     /// Record a payment receipt on-chain after a successful settlement.
     ///
-    /// `caller` must authorise this invocation via `require_auth()` — this prevents
-    /// any party other than the actual paying wallet from writing a receipt.
+    /// `admin` must authorise this invocation via `require_auth()` — this allows
+    /// the PayGate backend to securely record receipts on behalf of users.
     ///
     /// Returns the ledger timestamp at which the receipt was recorded.
     /// Panics on a duplicate (same caller + api_id + timestamp).
-    pub fn record_receipt(env: Env, caller: Address, api_id: String, amount: i128) -> u64 {
-        caller.require_auth();
+    pub fn record_receipt(env: Env, admin: Address, caller: Address, api_id: String, amount: i128) -> u64 {
+        admin.require_auth();
 
         let timestamp = env.ledger().timestamp();
         let key = (RECEIPT_KEY, caller.clone(), api_id.clone(), timestamp);
