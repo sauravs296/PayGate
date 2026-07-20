@@ -39,8 +39,8 @@ const NETWORK =
 
 const USDC_ASSET =
   process.env.STELLAR_NETWORK === "pubnet"
-    ? "USDC-GA5ZSEJYB37JRC52ZGMCEVTHSYFSENXCIIUVE7O5T5ZRVQQV55M22VMA"
-    : "native";
+    ? USDC_PUBNET_ADDRESS
+    : USDC_TESTNET_ADDRESS;
 
 /**
  * Build the paymentRequirements object that describes what the caller must pay.
