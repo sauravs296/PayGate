@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { getWalletKit } from "@/lib/stellar/wallet-kit";
 import { useToast } from "@/components/ui/toast";
@@ -89,10 +90,15 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-md px-4">
         {/* Logo */}
         <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 bg-gradient-to-tr from-violet-600 to-teal-400 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-violet-500/20 rotate-3 transition-transform hover:rotate-0 duration-300">
-            <span className="text-2xl font-bold text-white -rotate-3 transition-transform hover:rotate-0 duration-300">
-              PG
-            </span>
+          <div className="w-16 h-16 bg-zinc-900 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-black/20 overflow-hidden">
+            <Image
+              src="/logo.png"
+              alt="PayGate Logo"
+              width={64}
+              height={64}
+              className="object-contain w-full h-full"
+              priority
+            />
           </div>
           <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-white via-zinc-200 to-zinc-400 bg-clip-text text-transparent">
             PayGate

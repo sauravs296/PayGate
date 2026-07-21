@@ -3,6 +3,7 @@ import { AppSidebar } from "@/components/AppShell/AppSidebar";
 import { MobileNav } from "@/components/AppShell/MobileNav";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default async function DirectoryLayout({
   children,
@@ -41,8 +42,8 @@ export default async function DirectoryLayout({
       <header className="border-b border-zinc-800/50 bg-[#0a0a0f]/80 backdrop-blur-xl sticky top-0 z-50">
         <div className="max-w-6xl mx-auto flex items-center justify-between p-4 h-16">
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-tr from-violet-600 to-teal-400 rounded-lg flex items-center justify-center shadow-sm">
-              <span className="text-sm font-bold text-white">PG</span>
+            <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center shadow-sm overflow-hidden">
+              <Image src="/logo.png" alt="PayGate Logo" width={32} height={32} className="object-contain w-full h-full" priority />
             </div>
             <span className="text-lg font-bold tracking-tight">PayGate</span>
           </Link>

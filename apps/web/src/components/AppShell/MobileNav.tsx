@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { 
   LayoutDashboard, 
   TerminalSquare, 
@@ -38,12 +39,12 @@ export function MobileNav({ walletAddress }: { walletAddress: string }) {
     <div>
       {/* Top Bar */}
       <div className="flex items-center justify-between p-4">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-tr from-violet-600 to-teal-400 rounded-lg flex items-center justify-center shadow-sm">
-            <span className="text-sm font-bold text-white">PG</span>
+        <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
+          <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center shadow-sm overflow-hidden">
+            <Image src="/logo.png" alt="PayGate Logo" width={32} height={32} className="object-contain w-full h-full" priority />
           </div>
           <span className="text-xl font-bold tracking-tight">PayGate</span>
-        </div>
+        </Link>
         
         <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)} className="text-zinc-400">
           {isOpen ? <X /> : <Menu />}

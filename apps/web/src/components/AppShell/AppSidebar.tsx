@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { 
   LayoutDashboard, 
   TerminalSquare, 
@@ -36,8 +37,8 @@ export function AppSidebar({ walletAddress }: { walletAddress: string }) {
   return (
     <div className="flex flex-col h-full py-6 px-4">
       <div className="flex items-center gap-2 px-2 mb-10">
-        <div className="w-8 h-8 bg-gradient-to-tr from-violet-600 to-teal-400 rounded-lg flex items-center justify-center shadow-sm">
-          <span className="text-sm font-bold text-white">PG</span>
+        <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center shadow-sm overflow-hidden">
+          <Image src="/logo.png" alt="PayGate Logo" width={32} height={32} className="object-contain w-full h-full" priority />
         </div>
         <span className="text-xl font-bold tracking-tight">PayGate</span>
       </div>
