@@ -29,3 +29,4 @@ export function getActiveNetwork(): "stellar:testnet" | "stellar:pubnet" {
     ? "stellar:pubnet"
     : "stellar:testnet";
 }
+

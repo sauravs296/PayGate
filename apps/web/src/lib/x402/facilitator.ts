@@ -65,3 +65,4 @@ class LocalStellarFacilitator {
 
 // Singleton — Next.js route handlers re-use this across invocations within one worker.
 export const facilitator = new LocalStellarFacilitator();
+
