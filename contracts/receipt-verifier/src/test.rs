@@ -10,7 +10,7 @@ fn setup() -> (Env, ReceiptVerifierClient<'static>) {
     let contract_id = env.register(ReceiptVerifier, ());
     let client = ReceiptVerifierClient::new(&env, &contract_id);
     // SAFETY: the client borrows `env` but we return both; caller must keep `env` alive.
-    let client: ReceiptVerifierClient<'static> = unsafe { std::mem::transmute(client) };
+    let client: ReceiptVerifierClient<'static> = unsafe { core::mem::transmute(client) };
     (env, client)
 }
 
