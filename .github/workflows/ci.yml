@@ -29,6 +29,8 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm install
+      - run: npx prisma generate
+        working-directory: apps/web
       - run: npm run lint
         working-directory: apps/web
       - run: npm run build
