@@ -42,3 +42,4 @@ export async function fundTestnetAccount(publicKey: string): Promise<void> {
     throw new Error(`Friendbot failed for ${publicKey}: ${text}`);
   }
 }
+

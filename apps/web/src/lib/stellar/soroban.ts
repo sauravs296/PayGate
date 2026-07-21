@@ -68,3 +68,4 @@ export async function logReceiptOnChain(opts: {
     return null;
   }
 }
+
