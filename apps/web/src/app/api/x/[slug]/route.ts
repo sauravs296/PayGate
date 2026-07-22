@@ -75,6 +75,19 @@ export async function GET(req: NextRequest, { params }: Params) {
     );
   }
 
+  // Use the cryptographically verified address from the payment payload as
+  // the authoritative callerWallet — overrides any header-based guess.
+  const verifiedCaller =
+    paymentResult.callerWallet !== "unknown"
+      ? paymentResult.callerWallet
+      : callerWallet;
+
+  // Debug: log the raw payload shape once so we can see where the address lives.
+  if (process.env.NODE_ENV !== "production") {
+    console.log("[PayGate] paymentPayload shape:", JSON.stringify(paymentResult.paymentPayload, null, 2));
+    console.log("[PayGate] resolved callerWallet:", verifiedCaller);
+  }
+
   // ── 5. Proxy to the developer's real backend ───────────────────────────────
   let upstreamData: unknown;
   let latencyMs: number;
@@ -96,7 +109,7 @@ export async function GET(req: NextRequest, { params }: Params) {
     // Log as failed even though payment settled — refunds are out of scope for MVP
     await logApiCall({
       apiId: api.id,
-      callerWallet: paymentResult.callerWallet,
+      callerWallet: verifiedCaller,
       amountUsdc: api.priceUsdc,
       txHash: paymentResult.txHash,
       network: (process.env.STELLAR_NETWORK === "pubnet" ? "pubnet" : "testnet"),
@@ -116,7 +129,7 @@ export async function GET(req: NextRequest, { params }: Params) {
   await Promise.all([
     logApiCall({
       apiId: api.id,
-      callerWallet: paymentResult.callerWallet,
+      callerWallet: verifiedCaller,
       amountUsdc: api.priceUsdc,
       txHash: paymentResult.txHash,
       network,
@@ -124,7 +137,7 @@ export async function GET(req: NextRequest, { params }: Params) {
       latencyMs,
     }),
     pushToFeed(api.id, {
-      callerWallet: paymentResult.callerWallet,
+      callerWallet: verifiedCaller,
       amountUsdc: Number(api.priceUsdc),
       txHash: paymentResult.txHash,
       ts: Date.now(),
@@ -135,7 +148,7 @@ export async function GET(req: NextRequest, { params }: Params) {
 
   // Non-blocking: write receipt to Soroban contract as a side log
   logReceiptOnChain({
-    callerWallet: paymentResult.callerWallet,
+    callerWallet: verifiedCaller,
     apiId: api.id,
     amountUsdc: Number(api.priceUsdc),
   }).catch((err) => console.error("On-chain log failed:", err));

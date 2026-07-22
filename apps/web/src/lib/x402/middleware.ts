@@ -140,7 +140,16 @@ export async function verifyPayment(
   return {
     ok: true,
     txHash: (settleResult as any).transaction ?? "",
-    callerWallet: (paymentPayload as any)?.payload?.authorization?.from ?? "unknown",
+    // x402/stellar embeds the payer's G-address in different spots depending
+    // on the scheme version. Try every known path before falling back.
+    callerWallet:
+      (paymentPayload as any)?.payload?.authorization?.from ??
+      (paymentPayload as any)?.payload?.from ??
+      (paymentPayload as any)?.authorization?.from ??
+      (paymentPayload as any)?.from ??
+      (paymentPayload as any)?.payload?.sourceAccount ??
+      (paymentPayload as any)?.sourceAccount ??
+      "unknown",
     paymentPayload,
   };
 }

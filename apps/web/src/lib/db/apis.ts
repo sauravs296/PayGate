@@ -59,13 +59,13 @@ export async function getApiById(
   id: string,
   developerId: string
 ): Promise<Api | null> {
-  return prisma.api.findUnique({
+  return prisma.api.findFirst({
     where: { id, developerId },
   });
 }
 
 /**
- * Get all publicly listed and active APIs for the /directory page.
+ * Get all publicly listed and active APIs for the /marketplace page.
  */
 export async function getListedApis(): Promise<
   Pick<Api, "slug" | "name" | "description" | "priceUsdc" | "createdAt">[]

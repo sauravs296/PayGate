@@ -32,7 +32,7 @@ export async function createApiAction(formData: FormData) {
 
   revalidatePath("/dashboard");
   revalidatePath("/apis");
-  revalidatePath("/directory");
+  revalidatePath("/marketplace");
   redirect("/apis");
 }
 
@@ -59,7 +59,7 @@ export async function updateApiAction(id: string, formData: FormData) {
   revalidatePath("/dashboard");
   revalidatePath("/apis");
   revalidatePath(`/apis/${id}`);
-  revalidatePath("/directory");
+  revalidatePath("/marketplace");
   redirect(`/apis`);
 }
 
