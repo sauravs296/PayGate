@@ -1,8 +1,8 @@
-// @paygate/sdk — Phase 6 placeholder
+// @paygate/sdk
 //
-// The SDK will be extracted from apps/web/src/lib/x402/ once the core
-// paywall loop is proven in Phase 1-2. It will be published to npm as
-// @paygate/stellar so external developers can `npm install @paygate/stellar`
+// This package is intended to hold the shared x402 client logic.
+// It will be published to npm as
+// `@paygate/sdk` so third-party Node.js apps can easily call PayGate APIs.
 // and wrap any endpoint without hosting their own PayGate instance.
 //
 // For now, all SDK logic lives in apps/web/src/lib/x402/.

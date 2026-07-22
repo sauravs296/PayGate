@@ -84,7 +84,7 @@ async function main() {
   console.log(`✔ API: /${catApi.slug}  →  $${catApi.priceUsdc}/call  (unlisted)`);
 
   console.log("\n✅ Seed complete.");
-  console.log("\nTest the paywall route once Phase 1 is built:");
+  console.log("\nTest the paywall route:");
   console.log("  API_SLUG=demo-weather npx tsx scripts/e2e-demo.ts");
   console.log("\nReplace the placeholder wallet above with your real G... address");
   console.log("then re-run:  npx tsx prisma/seed.ts");
