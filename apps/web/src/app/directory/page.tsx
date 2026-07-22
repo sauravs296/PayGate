@@ -1,4 +1,5 @@
 import { getListedApis } from "@/lib/db/apis";
+import { getBaseUrl } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Globe, TerminalSquare, ArrowRight } from "lucide-react";
@@ -7,6 +8,7 @@ import { Button } from "@/components/ui/button";
 
 export default async function DirectoryPage() {
   const apis = await getListedApis();
+  const baseUrl = getBaseUrl();
 
   return (
     <div className="space-y-8">
@@ -54,7 +56,7 @@ export default async function DirectoryPage() {
                 <div className="bg-zinc-950 border border-zinc-800 p-3 rounded-lg overflow-x-auto">
                   <p className="text-xs text-zinc-500 mb-1 font-mono uppercase tracking-wider">Endpoint</p>
                   <code className="text-sm font-mono text-violet-300 whitespace-nowrap">
-                    https://paygate.xyz/api/x/{api.slug}
+                    {baseUrl}/api/x/{api.slug}
                   </code>
                 </div>
               </CardContent>

@@ -5,8 +5,11 @@ import { Switch } from "@/components/ui/switch";
 import { createApiAction } from "@/server/actions/api-actions";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { getBaseUrl } from "@/lib/utils";
 
-export default function NewApiPage() {
+export default async function NewApiPage() {
+  const baseUrl = getBaseUrl();
+
   return (
     <div className="max-w-2xl mx-auto space-y-6">
       <div className="flex items-center gap-4">
@@ -32,8 +35,8 @@ export default function NewApiPage() {
         <div className="space-y-2">
           <Label htmlFor="slug" className="text-zinc-300">URL Slug</Label>
           <div className="flex rounded-md shadow-sm">
-            <span className="inline-flex items-center rounded-l-md border border-r-0 border-zinc-800 bg-zinc-900 px-3 text-zinc-500 sm:text-sm">
-              paygate.xyz/api/x/
+            <span className="bg-zinc-800 text-zinc-400 px-3 py-2 rounded-l-md border border-r-0 border-zinc-700 font-mono text-sm">
+              {baseUrl.replace(/^https?:\/\//, '')}/api/x/
             </span>
             <Input 
               id="slug" 

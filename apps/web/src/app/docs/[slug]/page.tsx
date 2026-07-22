@@ -1,4 +1,5 @@
 import { getActiveApiBySlug } from "@/lib/db/apis";
+import { getBaseUrl } from "@/lib/utils";
 import { notFound } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +10,7 @@ import { Button } from "@/components/ui/button";
 export default async function ApiDocsPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const api = await getActiveApiBySlug(slug);
+  const baseUrl = getBaseUrl();
 
   if (!api) {
     notFound();
@@ -53,7 +55,7 @@ export default async function ApiDocsPage({ params }: { params: Promise<{ slug: 
             <p className="text-sm text-zinc-500 mb-2 font-mono uppercase tracking-wider">Endpoint</p>
             <code className="text-violet-400 font-mono flex items-center bg-violet-500/10 w-fit px-2 py-1 rounded">
               <TerminalSquare className="h-4 w-4 mr-2" />
-              POST https://paygate.xyz/api/x/{api.slug}
+              POST {baseUrl}/api/x/{api.slug}
             </code>
           </div>
           
@@ -76,7 +78,7 @@ const client = new x402Client({ schemes: [scheme] });
 const payFetch = wrapFetchWithPayment(fetch, client);
 
 // 3. Make the request — payment is handled automatically!
-const response = await payFetch("https://paygate.xyz/api/x/${api.slug}", {
+const response = await payFetch("${baseUrl}/api/x/${api.slug}", {
   method: "POST",
   body: JSON.stringify({ query: "example" })
 });

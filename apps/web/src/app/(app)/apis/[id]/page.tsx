@@ -1,3 +1,4 @@
+import { getBaseUrl } from "@/lib/utils";
 import { getSession } from "@/lib/auth/session";
 import { getApiById } from "@/lib/db/apis";
 import { getDailyEarnings, getTotalEarnings, getTopCallers } from "@/lib/db/calls";
@@ -12,6 +13,7 @@ import { LiveFeed } from "@/components/LiveFeed";
 import { TopCallers } from "@/components/TopCallers";
 
 export default async function ApiDetailPage({ params }: { params: { id: string } }) {
+  const baseUrl = getBaseUrl();
   const session = await getSession();
   const api = await getApiById(params.id, session.developerId);
 
@@ -70,7 +72,7 @@ export default async function ApiDetailPage({ params }: { params: { id: string }
           <CardContent>
             <div className="flex items-center justify-between bg-zinc-950 border border-zinc-800 rounded-md p-3">
               <code className="text-violet-400 text-sm font-mono truncate mr-4">
-                POST https://paygate.xyz/api/x/{api.slug}
+                POST {baseUrl}/api/x/{api.slug}
               </code>
               <Button variant="ghost" size="sm" className="h-8 text-zinc-400 hover:text-white shrink-0">
                 <Copy className="h-4 w-4 mr-2" />
