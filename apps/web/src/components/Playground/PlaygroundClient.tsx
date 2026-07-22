@@ -181,7 +181,7 @@ export function PlaygroundClient({
       {/* Top bar */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <Button variant="ghost" asChild className="text-zinc-400 hover:text-white">
-          <Link href="/directory">
+          <Link href="/marketplace">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Directory
           </Link>
         </Button>

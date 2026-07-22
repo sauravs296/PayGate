@@ -9,7 +9,6 @@ import {
   TerminalSquare, 
   Settings, 
   LogOut,
-  Globe,
   Menu,
   X
 } from "lucide-react";
@@ -26,7 +25,6 @@ export function MobileNav({ walletAddress, totalEarnings }: { walletAddress: str
   const links = [
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/apis", label: "My APIs", icon: TerminalSquare },
-    { href: "/directory", label: "Directory", icon: Globe },
     { href: "/settings", label: "Settings", icon: Settings },
   ];
 
@@ -58,8 +56,7 @@ export function MobileNav({ walletAddress, totalEarnings }: { walletAddress: str
         <div className="absolute top-[72px] left-0 right-0 bg-zinc-950 border-b border-zinc-800 z-50 p-4 shadow-xl flex flex-col gap-2">
           <nav className="flex flex-col space-y-1 mb-4">
             {links.map((link) => {
-              const isActive = pathname.startsWith(link.href) && 
-                (link.href !== "/directory" || pathname === "/directory");
+              const isActive = pathname.startsWith(link.href);
                 
               return (
                 <Link 

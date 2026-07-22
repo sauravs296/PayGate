@@ -7,8 +7,7 @@ import {
   LayoutDashboard, 
   TerminalSquare, 
   Settings, 
-  LogOut,
-  Globe
+  LogOut
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -22,7 +21,6 @@ export function AppSidebar({ walletAddress, totalEarnings }: { walletAddress: st
   const links = [
     { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
     { href: "/apis", label: "My APIs", icon: TerminalSquare },
-    { href: "/directory", label: "Directory", icon: Globe },
     { href: "/settings", label: "Settings", icon: Settings },
   ];
 
@@ -47,8 +45,7 @@ export function AppSidebar({ walletAddress, totalEarnings }: { walletAddress: st
 
       <nav className="flex-1 space-y-2">
         {links.map((link) => {
-          const isActive = pathname.startsWith(link.href) && 
-            (link.href !== "/directory" || pathname === "/directory");
+          const isActive = pathname.startsWith(link.href);
             
           return (
             <Link 
