@@ -61,7 +61,7 @@ export default async function DirectoryPage() {
               
               <CardFooter className="pt-0">
                 <Button variant="ghost" asChild className="w-full justify-between text-zinc-400 hover:text-white hover:bg-zinc-800">
-                  <Link href={`/apis/${api.slug}`}>
+                  <Link href={`/docs/${api.slug}`}>
                     <span className="flex items-center">
                       <TerminalSquare className="w-4 h-4 mr-2" />
                       View Documentation
