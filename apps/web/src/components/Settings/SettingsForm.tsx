@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { updateProfileAction, type UpdateProfileState } from "@/server/actions/profile-actions";
 import { useToast } from "@/components/ui/toast-provider";
 import {
@@ -48,6 +48,19 @@ export function SettingsForm({
   // dismissedState tracks which action result was dismissed by the user
   const [dismissedState, setDismissedState] = useState<UpdateProfileState>(null);
   const showBanner = state !== null && state !== dismissedState;
+
+  // Fire top-right toast whenever a new action result arrives
+  const prevStateRef = useRef<UpdateProfileState>(null);
+  useEffect(() => {
+    if (state !== null && state !== prevStateRef.current) {
+      prevStateRef.current = state;
+      if (state.success) {
+        showToast("success", "Profile Updated", "Your email has been saved successfully.");
+      } else {
+        showToast("error", "Update Failed", state.message);
+      }
+    }
+  }, [state, showToast]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(stellarWallet);
@@ -188,13 +201,7 @@ export function SettingsForm({
           <form
             action={async (formData: FormData) => {
               startTransition(() => {
-                formAction(formData).then((result) => {
-                  if (result?.success) {
-                    showToast("success", "Profile Updated", "Your email has been saved successfully.");
-                  } else if (result && !result.success) {
-                    showToast("error", "Update Failed", result.message);
-                  }
-                });
+                formAction(formData);
               });
             }}
             className="space-y-5"
