@@ -7,6 +7,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PublicNav } from "@/components/PublicNav";
 
+export const dynamic = "force-dynamic";
+
 export default async function DirectoryPage() {
   const apis = await getListedApis();
   const baseUrl = getBaseUrl();
