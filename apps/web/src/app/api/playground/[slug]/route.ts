@@ -39,7 +39,9 @@ export async function GET(req: NextRequest, { params }: Params) {
 
   const baseUrl = getBaseUrl();
   const targetUrl = `${baseUrl}/api/x/${slug}`;
-  const network = process.env.STELLAR_NETWORK === "pubnet" ? "stellar:pubnet" : "stellar:testnet";
+  const network = (process.env.STELLAR_NETWORK === "pubnet"
+    ? "stellar:pubnet"
+    : "stellar:testnet") as `${string}:${string}`;
 
   // Build SSE stream
   const encoder = new TextEncoder();
@@ -54,8 +56,8 @@ export async function GET(req: NextRequest, { params }: Params) {
       try {
         send("log", { type: "system", msg: `Preparing buyer agent wallet...` });
 
-        const signer = createEd25519Signer(agentSecret, network as string);
-        const scheme = new ExactStellarScheme(signer as Parameters<typeof ExactStellarScheme>[0]);
+        const signer = createEd25519Signer(agentSecret, network);
+        const scheme = new ExactStellarScheme(signer as ConstructorParameters<typeof ExactStellarScheme>[0]);
         const client = new x402Client().register(network, scheme);
 
         let attempt = 0;
