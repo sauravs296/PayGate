@@ -57,23 +57,23 @@ We are constantly improving PayGate based on developer feedback.
 
 | Landing Page | Developer Dashboard |
 |:---:|:---:|
-| ![Landing Page](ASSETS/landing-page.png)<br>*The front door to the autonomous API economy.* | ![Dashboard](ASSETS/dashboard.png)<br>*Track your earnings, calls, and active APIs in real-time.* |
+| ![Landing Page](assets/landing-page.png)<br>*The front door to the autonomous API economy.* | ![Dashboard](assets/dashboard.png)<br>*Track your earnings, calls, and active APIs in real-time.* |
 
 | Wallet Authentication | Register API |
 |:---:|:---:|
-| ![Auth Wallet](ASSETS/auth-wallet.png)<br>*Passwordless login via cryptographic Stellar wallet signature.* | ![Register API](ASSETS/register.png)<br>*Turn any backend URL into a monetized endpoint in seconds.* |
+| ![Auth Wallet](assets/auth-wallet.png)<br>*Passwordless login via cryptographic Stellar wallet signature.* | ![Register API](assets/register.png)<br>*Turn any backend URL into a monetized endpoint in seconds.* |
 
 | API Marketplace | API Metrics |
 |:---:|:---:|
-| ![Marketplace](ASSETS/marketplace.png)<br>*Public directory for developers and agents to discover your APIs.* | ![API Metrics](ASSETS/api-metrics.png)<br>*Detailed analytics and transaction history for a specific API.* |
+| ![Marketplace](assets/marketplace.png)<br>*Public directory for developers and agents to discover your APIs.* | ![API Metrics](assets/api-metrics.png)<br>*Detailed analytics and transaction history for a specific API.* |
 
 | Playground / Testing | Developer Guide |
 |:---:|:---:|
-| ![Testing Page](ASSETS/testing-page.png)<br>*Live in-browser simulation of an AI agent paying for your API.* | ![Developer Guide](ASSETS/dev-guide.png)<br>*Interactive, step-by-step onboarding for new developers.* |
+| ![Testing Page](assets/testing-page.png)<br>*Live in-browser simulation of an AI agent paying for your API.* | ![Developer Guide](assets/dev-guide.png)<br>*Interactive, step-by-step onboarding for new developers.* |
 
 | Settings | My APIs |
 |:---:|:---:|
-| ![Settings](ASSETS/settings.png)<br>*Manage your profile and notification preferences.* | ![My APIs](ASSETS/my-api.png)<br>*Manage and configure your registered paywalled endpoints.* |
+| ![Settings](assets/settings.png)<br>*Manage your profile and notification preferences.* | ![My APIs](assets/my-api.png)<br>*Manage and configure your registered paywalled endpoints.* |
 
 ### 📱 Mobile Experience
 
@@ -81,7 +81,7 @@ PayGate is fully responsive, allowing developers to manage their APIs and view e
 
 | Mobile Landing Page | Mobile Dashboard |
 |:---:|:---:|
-| <img src="ASSETS/MOBILE/landing-page.png" height="500"> | <img src="ASSETS/MOBILE/dashboard.png" height="500"> |
+| <img src="assets/MOBILE/landing-page.png" height="500"> | <img src="assets/MOBILE/dashboard.png" height="500"> |
 
 ---
 
@@ -215,7 +215,7 @@ PayGate ensures robust error handling across the entire payment and proxy lifecy
 
 PayGate includes an interactive playground and end-to-end (E2E) testing scripts to verify the complete machine-to-machine payment flow.
 
-![E2E Testing](ASSETS/TEST%20IMAGES/e2e-test.png)
+![E2E Testing](assets/TEST%20IMAGES/e2e-test.png)
 *Running the E2E script simulating an AI agent paying for an API call.*
 
 ### Testing Guide
