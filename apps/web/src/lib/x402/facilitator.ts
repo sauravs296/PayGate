@@ -19,7 +19,14 @@ function buildScheme(): ExactStellarScheme {
     throw new Error("PAYGATE_TREASURY_SECRET_KEY is not set");
   }
   const signer = createEd25519Signer(TREASURY_SECRET, NETWORK as any);
-  return new ExactStellarScheme([signer as any], { areFeesSponsored: true });
+  return new ExactStellarScheme([signer as any], {
+    areFeesSponsored: true,
+    // Raise the fee ceiling to 500k stroops (0.05 XLM).
+    // The default 50k is too tight for testnet — Soroban simulations
+    // on congested ledgers regularly produce a minResourceFee above that,
+    // causing "invalid_exact_stellar_payload_fee_exceeds_maximum".
+    maxTransactionFeeStroops: 500_000,
+  });
 }
 
 /**
