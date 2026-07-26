@@ -1,5 +1,6 @@
 <div align="center">
 
+<img src="public/logo.png" alt="PayGate Logo" width="200" />
 
 # PayGate
 
