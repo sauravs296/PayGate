@@ -23,19 +23,21 @@ jobs:
     name: App Tests (Lint, Build)
     runs-on: ubuntu-latest
     # Stub env vars so `next build` can load modules without real secrets.
-    # These are NOT used at runtime — only so the TypeScript compiler and
-    # module initializers don't crash during the build phase.
+    # Sensitive keys are read from GitHub Secrets — never hardcoded here.
     env:
       DATABASE_URL: "postgresql://fake:fake@localhost:5432/fake"
       DIRECT_URL: "postgresql://fake:fake@localhost:5432/fake"
       UPSTASH_REDIS_REST_URL: "https://fake.upstash.io"
       UPSTASH_REDIS_REST_TOKEN: "fake_token"
-      PAYGATE_TREASURY_WALLET: "GBZXN7PIRZGNMHGA7MUUUF4GWPY5AYPGZFH2I2IXIHLKZONE7ZTQQJL"
-      PAYGATE_TREASURY_SECRET_KEY: "SBFGZKZIKQFZNMWZODVOHKQCFGDILR5KLXHJKRWMFZRVKBF6E5B2YWY"
       STELLAR_NETWORK: "testnet"
+      # Public wallet address — not sensitive
+      PAYGATE_TREASURY_WALLET: ${{ secrets.PAYGATE_TREASURY_WALLET }}
+      # Stub contract IDs — non-sensitive placeholder strings for build only
       SOROBAN_CONTRACT_ID: "CDOF7XY3MGEKY3MNNJF5STMADAQRAFSHXP7WQIOCPEXM7O3BTPZYF7WH"
       SOROBAN_USDC_CONTRACT: "CDOF7XY3MGEKY3MNNJF5STMADAQRAFSHXP7WQIOCPEXM7O3BTPZYF7WH"
-      AGENT_STELLAR_SECRET_KEY: "SBFGZKZIKQFZNMWZODVOHKQCFGDILR5KLXHJKRWMFZRVKBF6E5B2YWY"
+      # Secret keys pulled from GitHub Secrets — never hardcoded
+      PAYGATE_TREASURY_SECRET_KEY: ${{ secrets.PAYGATE_TREASURY_SECRET_KEY }}
+      AGENT_STELLAR_SECRET_KEY: ${{ secrets.AGENT_STELLAR_SECRET_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
