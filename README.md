@@ -90,6 +90,10 @@ We are constantly improving PayGate based on developer feedback.
 |:---:|:---:|
 | ![Settings](assets/settings.png)<br>*Manage your profile and notification preferences.* | ![My APIs](assets/my-api.png)<br>*Manage and configure your registered paywalled endpoints.* |
 
+| Vercel Analytics | |
+|:---:|:---:|
+| ![Vercel Analytics](assets/analytics.png)<br>*Analytics added via Vercel Analytics to track traffic and usage.* | |
+
 ### 📱 Mobile Experience
 
 PayGate is fully responsive, allowing developers to manage their APIs and view earnings on the go.
