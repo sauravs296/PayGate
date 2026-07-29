@@ -151,22 +151,45 @@ export default async function LandingPage() {
 
       {/* ── Final CTA ────────────────────────────────────────────────────── */}
       <section className="py-24 px-4 border-t border-zinc-800/50">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="rounded-3xl border border-violet-500/20 bg-gradient-to-br from-violet-900/20 to-zinc-900/50 p-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to monetize your API?
-            </h2>
-            <p className="text-zinc-400 mb-8 text-lg">
-              Connect your Stellar wallet, register your endpoint, and start
-              earning USDC per call — in under 5 minutes.
-            </p>
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
+          <div className="rounded-3xl border border-violet-500/20 bg-gradient-to-br from-violet-900/20 to-zinc-900/50 p-10 text-center flex flex-col justify-between">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                For Developers
+              </h2>
+              <p className="text-zinc-400 mb-8">
+                Connect your Stellar wallet, register your endpoint, and start
+                earning USDC per call — in under 5 minutes.
+              </p>
+            </div>
             <Button
               asChild
               size="lg"
-              className="bg-gradient-to-r from-violet-600 to-teal-600 hover:from-violet-500 hover:to-teal-500 text-white shadow-xl shadow-violet-500/20 px-10"
+              className="bg-gradient-to-r from-violet-600 to-teal-600 hover:from-violet-500 hover:to-teal-500 text-white shadow-xl shadow-violet-500/20 w-full"
             >
               <Link href="/login">
-                Get Started Free <ArrowRight className="ml-2 h-4 w-4" />
+                Start Monetizing <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+
+          <div className="rounded-3xl border border-teal-500/20 bg-gradient-to-br from-teal-900/20 to-zinc-900/50 p-10 text-center flex flex-col justify-between">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-4">
+                For Buyers & AI Agents
+              </h2>
+              <p className="text-zinc-400 mb-8">
+                Discover ready-to-use premium APIs. Test them live in the browser using the built-in PayGate Playground.
+              </p>
+            </div>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="border-teal-500/30 text-teal-400 hover:bg-teal-500/10 hover:text-teal-300 w-full"
+            >
+              <Link href="/marketplace">
+                Explore Marketplace <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
