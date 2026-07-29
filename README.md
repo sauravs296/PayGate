@@ -51,6 +51,16 @@ We are constantly improving PayGate based on developer feedback.
 - **[Submit Feedback Form](https://forms.gle/uXD8V1NSdWmEhp7z7)**
 - **[View Feedback Responses](https://docs.google.com/spreadsheets/d/1ZuNnwy3OEF6_WV_hg7zTXq6VYlpUsgL9_eiR7rBNLt4/edit?usp=sharing)**
 
+### Latest Feedback Responses
+
+| Full Name | Wallet Address (Testnet) | x402 Exp | Satisfaction | Tx Speed | UI Design | Security | Primary Reason | Bugs/Issues | Suggestions | Recommend | Commits |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| Soumen Mandal | `GAEOFN...SIZQE` | 4/5 | 5/5 | Excellent | Excellent | Excellent | Low fees, Fast processing | None | All good | 10/10 | NiL |
+| Aditya Jha | `GCX3LF...FLQA` | 3/5 | 5/5 | Excellent | Excellent | Good | Low fees, Ease of use, Fast processing | NA | Need more for dev dashboard | 8/10 | NiL |
+| Debansh Tiwari | `GDFKLT...LL6Z` | 2/5 | 4/5 | Good | Fair | Excellent | Low fees, Ease of use, Fast processing, Integrations | Missing docs option in API creation | Enhance dev dashboard UI | 8/10 | `165b188fc680620cf2794ab87156813a9781a8d1` |
+| Saurav Tiwari | `GALK4M...VTTB` | 2/5 | 5/5 | Excellent | Fair | Excellent | Low fees, Ease of use, Fast processing | None | Provide more dev resources for monetization | 7/10 | NiL |
+| Suman Pradhan | `GA4DBF...MA67` | 4/5 | 3/5 | Good | Good | Good | Low fees, Ease of use, Fast processing, Integrations | Enhance testing screen | Enhance the testing page | 9/10 | `087055fb3dd256a73265bf35eff0e235fd6e77cb` |
+
 ---
 
 ## 📸 Platform Showcase
