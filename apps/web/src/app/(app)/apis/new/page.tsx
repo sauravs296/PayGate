@@ -62,8 +62,8 @@ export default async function NewApiPage() {
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="description" className="text-zinc-300">Description (Optional)</Label>
-          <Input id="description" name="description" placeholder="Short description of what the API does" className="bg-zinc-950 border-zinc-800 focus-visible:ring-violet-500" />
+          <Label htmlFor="description" className="text-zinc-300">Description / Documentation Link (Optional)</Label>
+          <Input id="description" name="description" placeholder="Short description or link to your API docs (e.g. https://...)" className="bg-zinc-950 border-zinc-800 focus-visible:ring-violet-500" />
         </div>
 
         <div className="flex items-center justify-between rounded-lg border border-zinc-800 p-4 bg-zinc-950">
