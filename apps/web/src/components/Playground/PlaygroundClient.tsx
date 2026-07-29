@@ -27,6 +27,8 @@ type LogEntry = {
 export function PlaygroundClient({
   apiSlug,
   apiName,
+  priceUsdc,
+  baseUrl,
 }: {
   apiSlug: string;
   apiName: string;
