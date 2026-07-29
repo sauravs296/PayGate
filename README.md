@@ -60,6 +60,11 @@ We are constantly improving PayGate based on developer feedback.
 | Debansh Tiwari | `GDFKLTB5WKKDDJ2NRU2V5OG476HYEGWT4UFV7BID7BNGWZGRZYL3LL6Z` | 2/5 | 4/5 | Good | Fair | Excellent | Low fees, Ease of use, Fast processing, Integrations | Missing docs option in API creation | Enhance dev dashboard UI | 8/10 | [`165b188`](https://github.com/sauravs296/PayGate/commit/165b188fc680620cf2794ab87156813a9781a8d1) |
 | Saurav Tiwari | `GALK4MID2BKRGDIFYAGRBJ3P2ZDSQJQASWMFAEMP25DPO2O5ISMXVTTB` | 2/5 | 5/5 | Excellent | Fair | Excellent | Low fees, Ease of use, Fast processing | None | Provide more dev resources for monetization | 7/10 | NiL |
 | Suman Pradhan | `GA4DBFJ7O7VXZDFFP3DARCCQHZLVTDD4YBLS4KKLYHT2BDA3S5MEMA67` | 4/5 | 3/5 | Good | Good | Good | Low fees, Ease of use, Fast processing, Integrations | Enhance testing screen | Enhance the testing page | 9/10 | [`087055f`](https://github.com/sauravs296/PayGate/commit/087055fb3dd256a73265bf35eff0e235fd6e77cb) |
+| Souradip Pal | `GCJWSEXMUW3B2SHKMAGKQ5ZD56V2YHHTRGYETS3WV2IN3ISXKVRWLSP7` | 4/5 | 5/5 | Excellent | Fair | Good | Low fees, Ease of use, Fast processing, Integrations | Couldn't find a withdrawal option | Keep it simple | 9/10 | [`80d2456`](https://github.com/sauravs296/PayGate/commit/80d24567752b7da1750cd54ca26e558cfce4011b) |
+| Valid Cerome | `GAMEGSEK4STZPXITXH63Y5QBO5Y2LL2O2D6VYQBXB4MJMKIXC63B5KJ4` | 1/5 | 5/5 | Excellent | Excellent | Good | Ease of use | None | Explore more | 7/10 | NiL |
+| Kartik Biswas | `GDKHLI3JCIRIKHOY5UJIVNEYGQOZXQSPE4SRWMKG7B77VAQE7SSYQMU6` | 1/5 | 5/5 | Excellent | Excellent | Excellent | Low fees, Ease of use | No | Loved the marketplace testing feature | 10/10 | NiL |
+| Subhajit Das | `GCQ6JTOTY4IWA5URYBAMX3RGRCRZ5CO3GKIF6DQI5NIDKY47XEUY7O4G` | 3/5 | 5/5 | Good | Good | Good | Low fees, Ease of use, Fast processing | No delete option for API | Great idea with potential | 9/10 | [`f094c30`](https://github.com/sauravs296/PayGate/commit/f094c309c3a3b872aa2b6f98408d81e799114150) |
+| Priyam Dey | `GDXRHYMYYF3ISS4JPQVZHHBHT7EVLAXFYCARK4HEXEQJ63HLMTK2OZ5I` | 3/5 | 4/5 | Good | Excellent | Fair | Low fees, Ease of use | No | Highlight marketplace on landing page | 7/10 | [`bf2b357`](https://github.com/sauravs296/PayGate/commit/bf2b357ca1aace385504008d052b9bdae61d7312) |
 
 ---
 
