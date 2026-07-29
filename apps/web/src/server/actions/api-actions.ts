@@ -1,7 +1,7 @@
 "use server";
 
 import { getSession } from "@/lib/auth/session";
-import { createApi, updateApi } from "@/lib/db/apis";
+import { createApi, updateApi, deactivateApi } from "@/lib/db/apis";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -60,5 +60,17 @@ export async function updateApiAction(id: string, formData: FormData) {
   revalidatePath("/apis");
   revalidatePath(`/apis/${id}`);
   revalidatePath("/marketplace");
-  redirect("/apis?updated=1");
+}
+
+export async function deactivateApiAction(id: string) {
+  const session = await getSession();
+  if (!session.isLoggedIn) throw new Error("Unauthorized");
+
+  await deactivateApi(id, session.developerId);
+
+  revalidatePath("/dashboard");
+  revalidatePath("/apis");
+  revalidatePath(`/apis/${id}`);
+  revalidatePath("/marketplace");
+  redirect("/apis?deleted=1");
 }

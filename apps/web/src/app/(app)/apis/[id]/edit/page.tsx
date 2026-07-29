@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { updateApiAction } from "@/server/actions/api-actions";
+import { updateApiAction, deactivateApiAction } from "@/server/actions/api-actions";
 import { getApiById } from "@/lib/db/apis";
 import { getSession } from "@/lib/auth/session";
 import Link from "next/link";
@@ -20,6 +20,7 @@ export default async function EditApiPage({ params }: { params: Promise<{ id: st
 
   // Next.js server actions need bind for extra arguments
   const updateActionWithId = updateApiAction.bind(null, api.id);
+  const deactivateActionWithId = deactivateApiAction.bind(null, api.id);
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
@@ -84,7 +85,7 @@ export default async function EditApiPage({ params }: { params: Promise<{ id: st
           <Switch id="isActive" name="isActive" defaultChecked={api.isActive} />
         </div>
 
-        <div className="pt-4 flex justify-end gap-3">
+        <div className="pt-4 flex justify-between gap-3 border-t border-zinc-800 mt-6 pt-6">
           <Button variant="ghost" asChild className="text-zinc-400 hover:text-white hover:bg-zinc-800">
             <Link href={`/apis/${api.id}`}>Cancel</Link>
           </Button>
@@ -93,6 +94,22 @@ export default async function EditApiPage({ params }: { params: Promise<{ id: st
           </Button>
         </div>
       </form>
+
+      {api.isActive && (
+        <form action={deactivateActionWithId} className="bg-red-950/20 p-6 rounded-xl border border-red-900/30">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+              <h3 className="text-lg font-medium text-red-400">Danger Zone</h3>
+              <p className="text-sm text-red-400/80 mt-1">
+                Deactivating this API will immediately block all incoming proxy requests. It will still show up in your dashboard for analytics.
+              </p>
+            </div>
+            <Button type="submit" variant="destructive" className="shrink-0 bg-red-600 hover:bg-red-700 text-white">
+              Deactivate API
+            </Button>
+          </div>
+        </form>
+      )}
     </div>
   );
 }
