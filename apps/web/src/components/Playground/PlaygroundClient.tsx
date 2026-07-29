@@ -261,6 +261,19 @@ export function PlaygroundClient({
         </div>
       )}
 
+      {/* Target Endpoint Display */}
+      <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span className="text-sm font-semibold text-zinc-400">Endpoint:</span>
+          <code className="text-xs text-violet-300 font-mono bg-violet-500/10 px-2 py-1 rounded">
+            GET {baseUrl}/api/x/{apiSlug}
+          </code>
+        </div>
+        <div className="text-sm font-medium text-zinc-400">
+          Cost: <span className="text-teal-400">{priceUsdc} USDC</span>
+        </div>
+      </div>
+
       {/* Main panels */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Live sequence log */}
@@ -269,13 +282,22 @@ export function PlaygroundClient({
             <Terminal className="h-4 w-4 text-violet-400" />
             <h3 className="text-sm font-semibold text-zinc-200">Live x402 Sequence</h3>
             {isRunning && (
-              <span className="ml-auto text-xs text-violet-400 animate-pulse">
+              <span className="ml-2 text-xs text-violet-400 animate-pulse">
                 ● recording
               </span>
             )}
             {hasDone && !isRunning && (
-              <span className="ml-auto text-xs text-green-400">✓ complete</span>
+              <span className="ml-2 text-xs text-green-400">✓ complete</span>
             )}
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="ml-auto h-7 text-xs text-zinc-500 hover:text-zinc-300"
+              onClick={() => setLogs([])}
+              disabled={isRunning || logs.length === 0}
+            >
+              Clear Logs
+            </Button>
           </div>
           <div className="flex-1 p-4 font-mono text-xs overflow-y-auto bg-[#080810] space-y-2">
             {logs.length === 0 && (
