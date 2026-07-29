@@ -29,9 +29,10 @@ type Params = { params: Promise<{ slug: string }> };
 export async function GET(req: NextRequest, { params }: Params) {
   const start = Date.now();
   const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug);
 
   // ── 1. Look up the API ──────────────────────────────────────────────────────
-  const api = await getActiveApiBySlug(slug);
+  const api = await getActiveApiBySlug(decodedSlug);
   if (!api) {
     return NextResponse.json({ error: "API not found" }, { status: 404 });
   }
@@ -45,7 +46,7 @@ export async function GET(req: NextRequest, { params }: Params) {
       payTo: process.env.PAYGATE_TREASURY_WALLET!,
     });
     return build402Response(requirements, {
-      resourceUrl: `${req.nextUrl.origin}/api/x/${slug}`,
+      resourceUrl: `${req.nextUrl.origin}/api/x/${encodeURIComponent(decodedSlug)}`,
       description: api.description ?? `Pay-per-call access to ${api.name}`,
     });
   }

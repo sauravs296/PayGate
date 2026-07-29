@@ -23,6 +23,7 @@ type Params = { params: Promise<{ slug: string }> };
 
 export async function GET(req: NextRequest, { params }: Params) {
   const { slug } = await params;
+  const decodedSlug = decodeURIComponent(slug);
 
   const agentSecret = process.env.AGENT_STELLAR_SECRET_KEY;
   if (!agentSecret) {
@@ -32,13 +33,13 @@ export async function GET(req: NextRequest, { params }: Params) {
     );
   }
 
-  const api = await getActiveApiBySlug(slug);
+  const api = await getActiveApiBySlug(decodedSlug);
   if (!api) {
     return new Response(JSON.stringify({ error: "API not found" }), { status: 404 });
   }
 
   const baseUrl = getBaseUrl();
-  const targetUrl = `${baseUrl}/api/x/${slug}`;
+  const targetUrl = `${baseUrl}/api/x/${encodeURIComponent(decodedSlug)}`;
   const network = (process.env.STELLAR_NETWORK === "pubnet"
     ? "stellar:pubnet"
     : "stellar:testnet") as `${string}:${string}`;

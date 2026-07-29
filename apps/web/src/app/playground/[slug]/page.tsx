@@ -5,7 +5,8 @@ import { getBaseUrl } from "@/lib/utils";
 
 export default async function PlaygroundPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
-  const api = await getActiveApiBySlug(params.slug);
+  const decodedSlug = decodeURIComponent(params.slug);
+  const api = await getActiveApiBySlug(decodedSlug);
 
   if (!api) {
     notFound();

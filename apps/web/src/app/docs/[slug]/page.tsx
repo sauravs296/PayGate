@@ -9,7 +9,8 @@ import { Button } from "@/components/ui/button";
 
 export default async function ApiDocsPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const api = await getActiveApiBySlug(slug);
+  const decodedSlug = decodeURIComponent(slug);
+  const api = await getActiveApiBySlug(decodedSlug);
   const baseUrl = getBaseUrl();
 
   if (!api) {
