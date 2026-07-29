@@ -137,10 +137,17 @@ export default async function DashboardPage() {
             <DollarSign className="h-4 w-4 text-teal-400" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-teal-400">
-              {totalEarnings.toFixed(4)} USDC
+            <div className="flex items-end justify-between">
+              <div>
+                <div className="text-2xl font-bold text-teal-400">
+                  {totalEarnings.toFixed(4)} USDC
+                </div>
+                <p className="text-xs text-zinc-500 mt-1">Lifetime settled</p>
+              </div>
+              <Button size="sm" variant="outline" className="h-7 text-xs border-teal-500/30 bg-teal-500/10 text-teal-400 hover:bg-teal-500/20" disabled title="Withdrawals to Stellar wallet coming soon">
+                Withdraw
+              </Button>
             </div>
-            <p className="text-xs text-zinc-500 mt-1">Lifetime settled</p>
           </CardContent>
         </Card>
         
