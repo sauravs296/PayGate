@@ -1,5 +1,5 @@
 [workspace]
-members = ["receipt-verifier"]
+members = ["paygate-router","receipt-verifier","paygate-reputation"]
 resolver = "2"
 
 [profile.release]

@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
-# Build the receipt-verifier Soroban contract to WASM.
+# Build all Soroban contracts to WASM.
 # Run from the repo root: ./contracts/scripts/build.sh
 set -e
 
-cd "$(dirname "$0")/../receipt-verifier"
-echo "Building receipt-verifier contract..."
+cd "$(dirname "$0")/.."
+
+echo "Building workspace..."
 stellar contract build
-echo "Done. WASM at: target/wasm32-unknown-unknown/release/receipt_verifier.wasm"
+
+echo "Done."
+echo "WASM artifacts are in: contracts/target/wasm32-unknown-unknown/release/"
