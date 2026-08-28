@@ -14,9 +14,12 @@
 ![Postgres](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Stellar](https://img.shields.io/badge/Stellar-000000?style=for-the-badge&logo=stellar&logoColor=white)
 
-[![Deploy Link](https://img.shields.io/badge/Live_App-paygate--stellar--swart.vercel.app-blue?style=for-the-badge&logo=vercel)](https://paygate-stellar-swart.vercel.app/)
-[![Documentation](https://img.shields.io/badge/Documentation-Docs-purple?style=for-the-badge&logo=readthedocs)](https://paygate-stellar-swart.vercel.app/documentation)
-[![Demo Video](https://img.shields.io/badge/Demo_Video-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/We9RWRjFwhE)
+<br />
+
+[![CI Pipeline](https://github.com/sauravs296/PayGate/actions/workflows/ci.yml/badge.svg)](https://github.com/sauravs296/PayGate/actions/workflows/ci.yml)
+[![Smart Contract CI](https://img.shields.io/badge/Contract_Tests-Rust%20%7C%20Passing-success?style=flat&logo=rust&logoColor=white)](https://github.com/sauravs296/PayGate/actions/workflows/ci.yml)
+[![Frontend CI](https://img.shields.io/badge/Frontend_CI-Lint%20%26%20Build%20%7C%20Passing-success?style=flat&logo=next.js&logoColor=white)](https://github.com/sauravs296/PayGate/actions/workflows/ci.yml)
+[![CD Deployment](https://img.shields.io/badge/CD_Deployment-Vercel%20Live-0070F3?style=flat&logo=vercel&logoColor=white)](https://paygate-stellar-swart.vercel.app/)
 
 </div>
 
