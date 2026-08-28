@@ -5,7 +5,7 @@ import { upsertDeveloper } from "@/lib/db/developers";
 
 export async function POST(request: Request) {
   try {
-    const { transaction } = await request.json();
+    const { transactionXDR: transaction } = await request.json();
 
     if (!transaction) {
       return NextResponse.json({ error: "Missing transaction" }, { status: 400 });
@@ -30,7 +30,7 @@ export async function POST(request: Request) {
       "paygate-login"
     );
 
-    const clientAccountId = parsedTx.tx.source;
+    const clientAccountId = parsedTx.clientAccountID;
 
     // 2. Fetch signers from the network using Soroban RPC (or Horizon)
     // For simplicity, we just verify the clientAccountId directly since it's an ed25519 key.
@@ -39,6 +39,7 @@ export async function POST(request: Request) {
       transaction,
       serverKeypair.publicKey(),
       networkPassphrase,
+      [clientAccountId],
       "PayGate Dashboard",
       "paygate-login"
     );

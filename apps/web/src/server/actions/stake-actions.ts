@@ -55,7 +55,7 @@ export async function submitStakeTransactionAction(apiId: string, signedXdr: str
   const rpcUrl = getRpcUrl(network);
   const server = new rpc.Server(rpcUrl);
 
-  const tx = rpc.TransactionBuilder.fromXDR(signedXdr, getNetworkPassphrase(network));
+  const tx = TransactionBuilder.fromXDR(signedXdr, getNetworkPassphrase(network));
   
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const sendResponse = await server.sendTransaction(tx as any);

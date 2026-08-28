@@ -28,14 +28,14 @@ export function StakeToPublish({ apiId, isListed }: { apiId: string; isListed: b
 
       // 2. Sign with wallet
       const kit = getWalletKit();
-      const network = process.env.NEXT_PUBLIC_STELLAR_NETWORK === "pubnet" ? "PUBLIC" : "TESTNET";
+      const networkPassphrase = process.env.NEXT_PUBLIC_STELLAR_NETWORK === "pubnet" ? "Public Global Stellar Network ; September 2015" : "Test SDF Network ; September 2015";
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { signedXDR } = await kit.signTransaction(xdr, { network: network as any });
+      const { signedTxXdr } = await kit.signTransaction(xdr, { networkPassphrase });
 
       info("Submitting transaction…", "Sending to the Stellar network.");
 
       // 3. Submit
-      await submitStakeTransactionAction(apiId, signedXDR);
+      await submitStakeTransactionAction(apiId, signedTxXdr);
 
       success("API Published!", "Your API is now staked and listed in the marketplace.");
     } catch (err: unknown) {

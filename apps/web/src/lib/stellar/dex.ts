@@ -1,4 +1,4 @@
-import { Server, Asset, Horizon } from "@stellar/stellar-sdk";
+import { Asset, Horizon } from "@stellar/stellar-sdk";
 
 
 /**
@@ -9,7 +9,7 @@ function getHorizonServer(network: string) {
   const url = network === "stellar:pubnet" 
     ? "https://horizon.stellar.org" 
     : "https://horizon-testnet.stellar.org";
-  return new Server(url);
+  return new Horizon.Server(url);
 }
 
 /**

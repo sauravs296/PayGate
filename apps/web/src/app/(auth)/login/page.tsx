@@ -31,16 +31,17 @@ export default function LoginPage() {
       const { transaction } = await challengeRes.json();
 
       // 3. Ask the wallet to sign the challenge transaction (SEP-10)
-      const network = process.env.NEXT_PUBLIC_STELLAR_NETWORK === "pubnet" ? "PUBLIC" : "TESTNET";
+      const networkPassphrase = process.env.NEXT_PUBLIC_STELLAR_NETWORK === "pubnet" ? "Public Global Stellar Network ; September 2015" : "Test SDF Network ; September 2015";
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { signedXDR } = await kit.signTransaction(transaction, { network: network as any });
+      const { signedTxXdr } = await kit.signTransaction(transaction, { networkPassphrase });
 
       // 4. Verify the signature server-side and create session
       const verifyRes = await fetch("/api/auth/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          transaction: signedXDR,
+          transactionXDR: signedTxXdr,
+          publicKey: address,
         }),
       });
 
