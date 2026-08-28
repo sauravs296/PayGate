@@ -2,7 +2,7 @@ import { getListedApis } from "@/lib/db/apis";
 import { getBaseUrl } from "@/lib/utils";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Globe, TerminalSquare, ArrowRight, Play } from "lucide-react";
+import { Globe, TerminalSquare, ArrowRight, Play, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { PublicNav } from "@/components/PublicNav";
@@ -49,9 +49,15 @@ export default async function DirectoryPage() {
                   <CardTitle className="text-xl group-hover:text-violet-400 transition-colors">
                     {api.name}
                   </CardTitle>
-                  <Badge variant="outline" className="bg-teal-500/10 text-teal-400 border-teal-500/20 whitespace-nowrap ml-2">
-                    {api.priceUsdc.toString()} USDC
-                  </Badge>
+                  <div className="flex gap-2">
+                    <Badge variant="outline" className="bg-violet-500/10 text-violet-400 border-violet-500/20 whitespace-nowrap" title="1 USDC Staked on Soroban">
+                      <ShieldCheck className="w-3 h-3 mr-1" />
+                      Verified
+                    </Badge>
+                    <Badge variant="outline" className="bg-teal-500/10 text-teal-400 border-teal-500/20 whitespace-nowrap">
+                      {api.priceUsdc.toString()} USDC
+                    </Badge>
+                  </div>
                 </div>
                 <CardDescription className="text-zinc-400 line-clamp-2 mt-2">
                   {api.description || "No description provided."}
