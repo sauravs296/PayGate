@@ -16,7 +16,7 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
       - name: Run Soroban unit tests
-        run: cd contracts/receipt-verifier && cargo test
+        run: cd contracts && cargo test --workspace
 
   # Layer 2 — Next.js Application tests (Lint + Build)
   app-tests:
