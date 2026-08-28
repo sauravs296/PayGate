@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
+    "indexer": "ts-node scripts/indexer.ts",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",

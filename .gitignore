@@ -24,6 +24,8 @@ coverage/
 # ─── Stellar / Contracts ─────────────────────────────────────────────────────
 contracts/.env.contracts.testnet
 contracts/.env.contracts.mainnet
+MANUAL_TESTING.md
+TECHNICAL_DOCS.md
 
 # ─── Rust build artifacts ────────────────────────────────────────────────────
 contracts/target/
@@ -40,3 +42,5 @@ yarn-error.log*
 .pnpm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
+
+yarn.lock
