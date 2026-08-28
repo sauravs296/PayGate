@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import { createApiAction } from "@/server/actions/api-actions";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -66,15 +65,7 @@ export default async function NewApiPage() {
           <Input id="description" name="description" placeholder="Short description or link to your API docs (e.g. https://...)" className="bg-zinc-950 border-zinc-800 focus-visible:ring-violet-500" />
         </div>
 
-        <div className="flex items-center justify-between rounded-lg border border-zinc-800 p-4 bg-zinc-950">
-          <div className="space-y-0.5">
-            <Label htmlFor="isListed" className="text-base text-zinc-200">Public Directory</Label>
-            <p className="text-sm text-zinc-500">
-              List this API in the public directory for others to discover.
-            </p>
-          </div>
-          <Switch id="isListed" name="isListed" defaultChecked />
-        </div>
+
 
         <div className="pt-4 flex justify-end gap-3">
           <Button variant="ghost" asChild className="text-zinc-400 hover:text-white hover:bg-zinc-800">

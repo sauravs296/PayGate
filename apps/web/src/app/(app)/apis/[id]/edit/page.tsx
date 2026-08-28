@@ -65,15 +65,7 @@ export default async function EditApiPage({ params }: { params: Promise<{ id: st
           <Input id="description" name="description" defaultValue={api.description || ""} className="bg-zinc-950 border-zinc-800 focus-visible:ring-violet-500" />
         </div>
 
-        <div className="flex items-center justify-between rounded-lg border border-zinc-800 p-4 bg-zinc-950">
-          <div className="space-y-0.5">
-            <Label htmlFor="isListed" className="text-base text-zinc-200">Public Directory</Label>
-            <p className="text-sm text-zinc-500">
-              List this API in the public directory for others to discover.
-            </p>
-          </div>
-          <Switch id="isListed" name="isListed" defaultChecked={api.isListed} />
-        </div>
+
 
         <div className="flex items-center justify-between rounded-lg border border-zinc-800 p-4 bg-zinc-950">
           <div className="space-y-0.5">

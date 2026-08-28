@@ -11,6 +11,7 @@ import Link from "next/link";
 import { EarningsChart } from "@/components/EarningsChart";
 import { LiveFeed } from "@/components/LiveFeed";
 import { TopCallers } from "@/components/TopCallers";
+import { StakeToPublish } from "@/components/StakeToPublish";
 
 export default async function ApiDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const baseUrl = getBaseUrl();
@@ -62,6 +63,8 @@ export default async function ApiDetailPage({ params }: { params: Promise<{ id: 
           </Link>
         </Button>
       </div>
+
+      <StakeToPublish apiId={api.id} isListed={api.isListed} />
 
       <div className="grid gap-4 md:grid-cols-3">
         <Card className="bg-zinc-900 border-zinc-800 md:col-span-2">
