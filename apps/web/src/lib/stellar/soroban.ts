@@ -69,3 +69,109 @@ export async function logReceiptOnChain(opts: {
   }
 }
 
+const routerContractId = process.env.PAYGATE_ROUTER_CONTRACT_ID;
+
+export async function setRouteOnChain(opts: {
+  apiId: string;
+  developerWallet: string;
+  shareBps: number;
+}): Promise<string | null> {
+  if (!routerContractId || !adminSecret) {
+    console.warn("Skipping on-chain route config: missing contract ID or admin secret");
+    return null;
+  }
+
+  try {
+    const network = process.env.STELLAR_NETWORK === "pubnet" ? "stellar:pubnet" : "stellar:testnet";
+    const rpcUrl = getRpcUrl(network);
+    const server = new rpc.Server(rpcUrl);
+    const networkPassphrase = getNetworkPassphrase(network);
+    
+    const adminKeypair = Keypair.fromSecret(adminSecret);
+    const adminAddress = adminKeypair.publicKey();
+    
+    const account = await server.getAccount(adminAddress);
+
+    const apiIdVal = nativeToScVal(opts.apiId, { type: "string" });
+    const developerVal = new Address(opts.developerWallet).toScVal();
+    const shareBpsVal = nativeToScVal(opts.shareBps, { type: "u32" });
+
+    const tx = new TransactionBuilder(account, {
+      fee: "100000",
+      networkPassphrase,
+    })
+      .addOperation(
+        new Contract(routerContractId).call("set_route", apiIdVal, developerVal, shareBpsVal)
+      )
+      .setTimeout(30)
+      .build();
+
+    const preparedTx = await server.prepareTransaction(tx);
+    preparedTx.sign(adminKeypair);
+    
+    const sendResponse = await server.sendTransaction(preparedTx);
+    if (sendResponse.status !== "PENDING") {
+      throw new Error(`Transaction failed to send: ${sendResponse.status}`);
+    }
+
+    return sendResponse.hash;
+  } catch (err) {
+    console.error("Failed to set route on-chain:", err);
+    return null;
+  }
+}
+
+const usdcContractId = process.env.SOROBAN_USDC_CONTRACT;
+
+export async function processPaymentOnChain(opts: {
+  apiId: string;
+  amountUsdc: number;
+}): Promise<string | null> {
+  if (!routerContractId || !adminSecret || !usdcContractId) {
+    console.warn("Skipping on-chain payment processing: missing config");
+    return null;
+  }
+
+  try {
+    const network = process.env.STELLAR_NETWORK === "pubnet" ? "stellar:pubnet" : "stellar:testnet";
+    const rpcUrl = getRpcUrl(network);
+    const server = new rpc.Server(rpcUrl);
+    const networkPassphrase = getNetworkPassphrase(network);
+    
+    const adminKeypair = Keypair.fromSecret(adminSecret);
+    const adminAddress = adminKeypair.publicKey();
+    
+    const account = await server.getAccount(adminAddress);
+    
+    const amountBase = Math.floor(opts.amountUsdc * 10_000_000);
+
+    const callerVal = new Address(adminAddress).toScVal();
+    const tokenVal = new Address(usdcContractId).toScVal();
+    const apiIdVal = nativeToScVal(opts.apiId, { type: "string" });
+    const amountVal = nativeToScVal(amountBase, { type: "i128" });
+
+    const tx = new TransactionBuilder(account, {
+      fee: "100000",
+      networkPassphrase,
+    })
+      .addOperation(
+        new Contract(routerContractId).call("pay", callerVal, tokenVal, apiIdVal, amountVal)
+      )
+      .setTimeout(30)
+      .build();
+
+    const preparedTx = await server.prepareTransaction(tx);
+    preparedTx.sign(adminKeypair);
+    
+    const sendResponse = await server.sendTransaction(preparedTx);
+    if (sendResponse.status !== "PENDING") {
+      throw new Error(`Transaction failed to send: ${sendResponse.status}`);
+    }
+
+    return sendResponse.hash;
+  } catch (err) {
+    console.error("Failed to process payment on-chain:", err);
+    return null;
+  }
+}
+
