@@ -10,6 +10,7 @@ import {
   Globe,
   Terminal,
   ChevronRight,
+  BookOpen,
 } from "lucide-react";
 
 export const metadata = {
@@ -92,8 +93,8 @@ export default async function LandingPage() {
               variant="outline"
               className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white px-8"
             >
-              <Link href="/marketplace">
-                Browse APIs <ChevronRight className="ml-2 h-4 w-4" />
+              <Link href="/documentation">
+                Read Docs <BookOpen className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
