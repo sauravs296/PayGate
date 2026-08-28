@@ -22,6 +22,15 @@
 
 ---
 
+## 🔗 Important Links
+
+- **Live Application**: [https://paygate-stellar-swart.vercel.app/](https://paygate-stellar-swart.vercel.app/) *(Live PayGate Application)*
+- **GitHub Repository**: [https://github.com/sauravs296/PayGate](https://github.com/sauravs296/PayGate)
+- **Documentation**: [https://paygate-stellar-swart.vercel.app/documentation](https://paygate-stellar-swart.vercel.app/documentation) *(Official PayGate Documentation)*
+- **Demo Video**: [Watch the PayGate MVP Demo](https://youtu.be/We9RWRjFwhE)
+
+---
+
 ## 🛑 The Problem
 
 The current API economy is built for humans and credit cards, not AI agents. When an autonomous AI needs to access premium data (like real-time weather, stock prices, or compute APIs), it hits a paywall. To get past it, a human developer has to manually sign up for an API key, enter a credit card, commit to a monthly subscription, and hardcode that key into the agent. 
