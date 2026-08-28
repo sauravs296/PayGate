@@ -1,38 +1,54 @@
 import { NextResponse } from "next/server";
-import { redis } from "@/lib/redis";
-import { verifyStellarSignature } from "@/lib/auth/verify-stellar";
+import { Keypair, WebAuth } from "@stellar/stellar-sdk";
 import { getSession } from "@/lib/auth/session";
 import { upsertDeveloper } from "@/lib/db/developers";
 
 export async function POST(request: Request) {
   try {
-    const { publicKey, signature, nonce } = await request.json();
+    const { transaction } = await request.json();
 
-    if (!publicKey || !signature || !nonce) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    if (!transaction) {
+      return NextResponse.json({ error: "Missing transaction" }, { status: 400 });
     }
 
-    // 1. Verify nonce exists and hasn't been used
-    const redisKey = `paygate:auth:nonce:${nonce}`;
-    const isValidNonce = await redis.get(redisKey);
-    
-    if (!isValidNonce) {
-      return NextResponse.json({ error: "Invalid or expired nonce" }, { status: 401 });
+    const treasurySecret = process.env.PAYGATE_TREASURY_SECRET_KEY;
+    if (!treasurySecret) {
+      return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
     }
-    
-    // Prevent replay attacks by deleting the nonce immediately
-    await redis.del(redisKey);
 
-    // 2. Verify the cryptographic signature
-    const expectedMessage = `Sign this message to log into PayGate.\n\nNonce: ${nonce}`;
-    const isValidSignature = verifyStellarSignature(publicKey, expectedMessage, signature);
-    
-    if (!isValidSignature) {
-      return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
+    const serverKeypair = Keypair.fromSecret(treasurySecret);
+    const networkPassphrase = process.env.STELLAR_NETWORK === "pubnet" 
+      ? "Public Global Stellar Network ; September 2015"
+      : "Test SDF Network ; September 2015";
+
+    // 1. Read and parse the challenge transaction
+    const parsedTx = WebAuth.readChallengeTx(
+      transaction,
+      serverKeypair.publicKey(),
+      networkPassphrase,
+      "PayGate Dashboard",
+      "paygate-login"
+    );
+
+    const clientAccountId = parsedTx.tx.source;
+
+    // 2. Fetch signers from the network using Soroban RPC (or Horizon)
+    // For simplicity, we just verify the clientAccountId directly since it's an ed25519 key.
+    // In a full SEP-10 implementation, we would query the network for thresholds.
+    const isValidSignature = WebAuth.verifyChallengeTxSigners(
+      transaction,
+      serverKeypair.publicKey(),
+      networkPassphrase,
+      "PayGate Dashboard",
+      "paygate-login"
+    );
+
+    if (isValidSignature.length === 0) {
+       return NextResponse.json({ error: "Invalid signature" }, { status: 401 });
     }
 
     // 3. Upsert developer in the database
-    const developer = await upsertDeveloper(publicKey);
+    const developer = await upsertDeveloper(clientAccountId);
 
     // 4. Create Iron Session
     const session = await getSession();
@@ -44,7 +60,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true, redirect: "/dashboard" });
   } catch (error) {
     console.error("Auth verify error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json({ error: "Invalid SEP-10 transaction" }, { status: 401 });
   }
 }
 

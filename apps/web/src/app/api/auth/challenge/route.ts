@@ -1,21 +1,35 @@
-import { NextResponse } from "next/server";
-import { redis } from "@/lib/redis";
-import crypto from "crypto";
+import { NextRequest, NextResponse } from "next/server";
+import { Keypair, WebAuth } from "@stellar/stellar-sdk";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
-    // Generate a random 32-byte hex nonce
-    const nonce = crypto.randomBytes(32).toString("hex");
-    
-    // In a production environment, you might tie this nonce to an IP address 
-    // or early session ID to prevent replay across different clients.
-    // For now, we just store valid nonces in Redis with a 5-minute TTL.
-    const redisKey = `paygate:auth:nonce:${nonce}`;
-    await redis.set(redisKey, "valid", { ex: 300 });
+    const url = new URL(req.url);
+    const account = url.searchParams.get("account");
+    if (!account) {
+      return NextResponse.json({ error: "Missing account parameter" }, { status: 400 });
+    }
 
-    const message = `Sign this message to log into PayGate.\n\nNonce: ${nonce}`;
+    const treasurySecret = process.env.PAYGATE_TREASURY_SECRET_KEY;
+    if (!treasurySecret) {
+      return NextResponse.json({ error: "Server misconfigured" }, { status: 500 });
+    }
 
-    return NextResponse.json({ nonce, message });
+    const serverKeypair = Keypair.fromSecret(treasurySecret);
+    const networkPassphrase = process.env.STELLAR_NETWORK === "pubnet" 
+      ? "Public Global Stellar Network ; September 2015"
+      : "Test SDF Network ; September 2015";
+
+    // Build the SEP-10 challenge transaction
+    const challengeTx = WebAuth.buildChallengeTx(
+      serverKeypair,
+      account,
+      "PayGate Dashboard",
+      300,
+      networkPassphrase,
+      "paygate-login"
+    );
+
+    return NextResponse.json({ transaction: challengeTx });
   } catch (error) {
     console.error("Auth challenge error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

@@ -25,22 +25,22 @@ export default function LoginPage() {
 
       info("Signing message…", "Please approve the signature request in your wallet.");
 
-      // 2. Get a challenge nonce from the server
-      const challengeRes = await fetch("/api/auth/challenge");
+      // 2. Get a challenge transaction from the server
+      const challengeRes = await fetch(`/api/auth/challenge?account=${address}`);
       if (!challengeRes.ok) throw new Error("Failed to get challenge from server.");
-      const { nonce, message } = await challengeRes.json();
+      const { transaction } = await challengeRes.json();
 
-      // 3. Ask the wallet to sign the challenge message (Freighter uses SEP-53 internally)
-      const { signedMessage } = await kit.signMessage(message, { address });
+      // 3. Ask the wallet to sign the challenge transaction (SEP-10)
+      const network = process.env.NEXT_PUBLIC_STELLAR_NETWORK === "pubnet" ? "PUBLIC" : "TESTNET";
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { signedXDR } = await kit.signTransaction(transaction, { network: network as any });
 
       // 4. Verify the signature server-side and create session
       const verifyRes = await fetch("/api/auth/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          publicKey: address,
-          signature: signedMessage,
-          nonce,
+          transaction: signedXDR,
         }),
       });
 

@@ -22,7 +22,7 @@ import { getActiveApiBySlug } from "@/lib/db/apis";
 import { logApiCall } from "@/lib/db/calls";
 import { pushToFeed, incrementEarningsCache, incrementCallCount } from "@/lib/feed";
 import { ratelimit } from "@/lib/ratelimit";
-import { logReceiptOnChain } from "@/lib/stellar/soroban";
+import { logReceiptOnChain, processPaymentOnChain } from "@/lib/stellar/soroban";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -146,6 +146,12 @@ export async function GET(req: NextRequest, { params }: Params) {
     incrementEarningsCache(api.id, Number(api.priceUsdc)),
     incrementCallCount(api.id),
   ]);
+
+  // Execute on-chain revenue split (Treasury sweeps to Router)
+  processPaymentOnChain({
+    apiId: api.id,
+    amountUsdc: Number(api.priceUsdc),
+  }).catch((err) => console.error("On-chain revenue split failed:", err));
 
   // Non-blocking: write receipt to Soroban contract as a side log
   logReceiptOnChain({
