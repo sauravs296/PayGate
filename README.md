@@ -15,6 +15,7 @@
 ![Stellar](https://img.shields.io/badge/Stellar-000000?style=for-the-badge&logo=stellar&logoColor=white)
 
 [![Deploy Link](https://img.shields.io/badge/Live_App-paygate--stellar--swart.vercel.app-blue?style=for-the-badge&logo=vercel)](https://paygate-stellar-swart.vercel.app/)
+[![Documentation](https://img.shields.io/badge/Documentation-Docs-purple?style=for-the-badge&logo=readthedocs)](https://paygate-stellar-swart.vercel.app/documentation)
 [![Demo Video](https://img.shields.io/badge/Demo_Video-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/We9RWRjFwhE)
 
 </div>
@@ -212,7 +213,9 @@ PayGate utilizes Soroban smart contracts on the Stellar network to maintain an i
 
 | Contract Name | Network | Contract ID | Verification Link |
 |---|---|---|---|
-| `receipt-verifier` | Stellar Testnet | `CDOF7XY3MGEKY3MNNJF5STMADAQRAFSHXP7WQIOCPEXM7O3BTPZYF7WH` | [Verify on Stellar Expert](https://stellar.expert/explorer/testnet/contract/CDOF7XY3MGEKY3MNNJF5STMADAQRAFSHXP7WQIOCPEXM7O3BTPZYF7WH) |
+| `receipt-verifier` | Stellar Testnet | `CBUGM2OM6Z3XSRTVN3Y4LI6SH3CXW2GUKNQL2FQKNERABFCNDT7DXRGI` | [Verify on Stellar Expert](https://stellar.expert/explorer/testnet/tx/c6d163583b3135c57a2614154ee0c7579040a90062599ab2b48671a9c4812170) |
+| `paygate-router` | Stellar Testnet | `CDHAMAEXMNLHUDBF5EKF3OYYPHIRUOWWSSW6ML4ANDDRESHGTVGMRO3L` | [Verify on Stellar Expert](https://stellar.expert/explorer/testnet/tx/ddd38c2678e912554ab69e051f95d0d87c04d01f8057e81a2297123d814ec454) |
+| `paygate-reputation` | Stellar Testnet | `CDEXJVXD4AAT73DDSEOEOCFZZFSYBKZAJFQ37EYFG3TS57F7E25HHHA6` | [Verify on Stellar Expert](https://stellar.expert/explorer/testnet/tx/156e22497f5406b11818b158417d31215065e135c607a7dfa333ef82d92bc08e) |
 
 ---
 
@@ -229,6 +232,13 @@ PayGate ensures robust error handling across the entire payment and proxy lifecy
 | **API Not Found / Inactive** | `404 Not Found` | Returns an error if the requested API slug doesn't exist or was deactivated by the developer. |
 
 ---
+
+## 💎 Soroban Smart Contracts (SCF Upgrade)
+To ensure true decentralization and on-chain verifiable behaviors, PayGate utilizes two custom Soroban smart contracts:
+1. **PayGate Router (`contracts/paygate-router`)**: A decentralized router that automatically splits the paid USDC between the API Developer (e.g. 90%) and the Protocol Treasury (10%) seamlessly on-chain using the standard Stellar Asset Contract token client.
+2. **PayGate Reputation (`contracts/paygate-reputation`)**: A staking and voting contract. Developers must stake a minimum of 1 USDC to have their API listed on the public marketplace, effectively curbing spam. Users can cast upvotes and downvotes on-chain to rank the APIs.
+
+An included backend indexer (`scripts/indexer.ts`) listens to Soroban RPC events emitted by these contracts in real-time, syncing the state directly to the dashboard.
 
 ## 🧪 Testing
 

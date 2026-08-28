@@ -64,13 +64,34 @@ export default async function DirectoryPage() {
                 </CardDescription>
               </CardHeader>
               
-              <CardContent className="flex-1">
+              <CardContent className="flex-1 flex flex-col gap-4">
                 <div className="bg-zinc-950 border border-zinc-800 p-3 rounded-lg overflow-x-auto">
                   <p className="text-xs text-zinc-500 mb-1 font-mono uppercase tracking-wider">Endpoint</p>
                   <code className="text-sm font-mono text-violet-300 whitespace-nowrap">
                     {baseUrl}/api/x/{api.slug}
                   </code>
                 </div>
+
+                {api.developer && (api.developer.name || api.developer.twitter || api.developer.github) && (
+                  <div className="pt-2 border-t border-zinc-800/60 flex items-center justify-between text-xs">
+                    <div className="flex flex-col">
+                      <span className="text-zinc-500 font-medium mb-0.5">Developer</span>
+                      <span className="text-zinc-300 font-semibold">{api.developer.name || "Anonymous"}</span>
+                    </div>
+                    <div className="flex gap-2">
+                      {api.developer.twitter && (
+                        <a href={api.developer.twitter.startsWith('http') ? api.developer.twitter : `https://twitter.com/${api.developer.twitter}`} target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300">
+                          Twitter
+                        </a>
+                      )}
+                      {api.developer.github && (
+                        <a href={api.developer.github.startsWith('http') ? api.developer.github : `https://github.com/${api.developer.github}`} target="_blank" rel="noopener noreferrer" className="text-violet-400 hover:text-violet-300">
+                          GitHub
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                )}
               </CardContent>
               
               <CardFooter className="pt-0 flex flex-col gap-2">

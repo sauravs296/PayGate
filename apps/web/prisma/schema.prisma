@@ -19,6 +19,10 @@ model Developer {
   id            String   @id @default(cuid())
   stellarWallet String   @unique          // G... Stellar public key
   email         String?  @unique
+  name          String?
+  bio           String?
+  twitter       String?
+  github        String?
   createdAt     DateTime @default(now())
 
   apis          Api[]

@@ -65,6 +65,16 @@ export default async function NewApiPage() {
           <Input id="description" name="description" placeholder="Short description or link to your API docs (e.g. https://...)" className="bg-zinc-950 border-zinc-800 focus-visible:ring-violet-500" />
         </div>
 
+        <div className="bg-amber-500/10 border border-amber-500/20 text-amber-300 p-4 rounded-lg text-sm flex gap-3">
+          <svg className="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+          <p>
+            <strong>Note:</strong> Currently, PayGate only supports APIs that return JSON responses. 
+            Image APIs and other formats are not fully supported and will not render correctly in the Playground.
+          </p>
+        </div>
+
 
 
         <div className="pt-4 flex justify-end gap-3">

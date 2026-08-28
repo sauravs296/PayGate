@@ -31,9 +31,10 @@ export type ApiWithStats = Api & {
  * Look up an active API by its slug.
  * This is the hot path — called on every /api/x/[slug] request.
  */
-export async function getActiveApiBySlug(slug: string): Promise<Api | null> {
+export async function getActiveApiBySlug(slug: string) {
   return prisma.api.findUnique({
     where: { slug, isActive: true },
+    include: { developer: true },
   });
 }
 
@@ -67,9 +68,7 @@ export async function getApiById(
 /**
  * Get all publicly listed and active APIs for the /marketplace page.
  */
-export async function getListedApis(): Promise<
-  Pick<Api, "slug" | "name" | "description" | "priceUsdc" | "createdAt">[]
-> {
+export async function getListedApis() {
   return prisma.api.findMany({
     where: { isListed: true, isActive: true },
     select: {
@@ -78,6 +77,14 @@ export async function getListedApis(): Promise<
       description: true,
       priceUsdc: true,
       createdAt: true,
+      developer: {
+        select: {
+          name: true,
+          bio: true,
+          twitter: true,
+          github: true,
+        },
+      },
     },
     orderBy: { createdAt: "desc" },
   });

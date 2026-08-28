@@ -28,6 +28,10 @@ import { useState, useTransition } from "react";
 interface SettingsFormProps {
   stellarWallet: string;
   email: string | null;
+  name: string | null;
+  bio: string | null;
+  twitter: string | null;
+  github: string | null;
   developerId: string;
   createdAt: Date;
 }
@@ -35,6 +39,10 @@ interface SettingsFormProps {
 export function SettingsForm({
   stellarWallet,
   email,
+  name,
+  bio,
+  twitter,
+  github,
   developerId,
   createdAt,
 }: SettingsFormProps) {
@@ -206,23 +214,35 @@ export function SettingsForm({
             }}
             className="space-y-5"
           >
-            <div className="space-y-2">
-              <Label htmlFor="email" className="text-zinc-300 text-sm font-medium">
-                Email Address
-              </Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                defaultValue={email || ""}
-                placeholder="you@example.com"
-                className="bg-zinc-950 border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-violet-500 focus-visible:border-violet-500"
-              />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-zinc-300 text-sm font-medium">Display Name</Label>
+                  <Input id="name" name="name" defaultValue={name || ""} placeholder="Satoshi Nakamoto" className="bg-zinc-950 border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-violet-500 focus-visible:border-violet-500" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-zinc-300 text-sm font-medium">Email Address</Label>
+                  <Input id="email" name="email" type="email" defaultValue={email || ""} placeholder="you@example.com" className="bg-zinc-950 border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-violet-500 focus-visible:border-violet-500" />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="bio" className="text-zinc-300 text-sm font-medium">Bio</Label>
+                <Input id="bio" name="bio" defaultValue={bio || ""} placeholder="I build autonomous AI agents." className="bg-zinc-950 border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-violet-500 focus-visible:border-violet-500" />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="space-y-2">
+                  <Label htmlFor="twitter" className="text-zinc-300 text-sm font-medium">Twitter Profile URL</Label>
+                  <Input id="twitter" name="twitter" defaultValue={twitter || ""} placeholder="https://twitter.com/..." className="bg-zinc-950 border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-violet-500 focus-visible:border-violet-500" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="github" className="text-zinc-300 text-sm font-medium">GitHub Profile URL</Label>
+                  <Input id="github" name="github" defaultValue={github || ""} placeholder="https://github.com/..." className="bg-zinc-950 border-zinc-800 text-zinc-100 placeholder:text-zinc-600 focus-visible:ring-violet-500 focus-visible:border-violet-500" />
+                </div>
+              </div>
               <p className="text-xs text-zinc-600">
-                Used for API earnings summaries and important account alerts.
-                Never shared with third parties.
+                This information will be displayed publicly on your API marketplace listings. Email is never shared.
               </p>
-            </div>
 
             <div className="flex items-center justify-between pt-1">
               <p className="text-xs text-zinc-600">

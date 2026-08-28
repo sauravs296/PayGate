@@ -230,8 +230,8 @@ export function PlaygroundClient({
               {/* Run button */}
               <Button
                 onClick={handleRun}
-                disabled={isRunning}
-                className="bg-gradient-to-r from-violet-600 to-teal-600 hover:from-violet-500 hover:to-teal-500 text-white shadow-lg shadow-violet-500/20"
+                disabled={isRunning || usdcBalance === "0.00" || usdcBalance === null}
+                className="bg-gradient-to-r from-violet-600 to-teal-600 hover:from-violet-500 hover:to-teal-500 text-white shadow-lg shadow-violet-500/20 disabled:opacity-50"
               >
                 {isRunning ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -354,7 +354,9 @@ export function PlaygroundClient({
                     <span className="text-teal-500 block mb-1 font-sans font-semibold not-italic">
                       Transaction Hash
                     </span>
-                    {txHash}
+                    <a href={`https://stellar.expert/explorer/testnet/tx/${txHash}`} target="_blank" rel="noopener noreferrer" className="hover:underline text-teal-400">
+                      {txHash}
+                    </a>
                   </div>
                 )}
                 <pre className="text-zinc-300 font-mono text-xs leading-relaxed">

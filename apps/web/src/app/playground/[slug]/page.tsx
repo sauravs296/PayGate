@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { PlaygroundClient } from "@/components/Playground/PlaygroundClient";
 import { getBaseUrl } from "@/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 export default async function PlaygroundPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
   const decodedSlug = decodeURIComponent(params.slug);

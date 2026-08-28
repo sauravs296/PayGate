@@ -20,6 +20,10 @@ export async function updateProfileAction(
   }
 
   const email = (formData.get("email") as string | null)?.trim() || null;
+  const name = (formData.get("name") as string | null)?.trim() || null;
+  const bio = (formData.get("bio") as string | null)?.trim() || null;
+  const twitter = (formData.get("twitter") as string | null)?.trim() || null;
+  const github = (formData.get("github") as string | null)?.trim() || null;
 
   // Basic email validation
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -30,7 +34,11 @@ export async function updateProfileAction(
     await prisma.developer.update({
       where: { stellarWallet: session.stellarWallet },
       data: {
-        ...(email !== null && { email }),
+        email,
+        name,
+        bio,
+        twitter,
+        github,
       },
     });
 
