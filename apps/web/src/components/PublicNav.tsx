@@ -19,6 +19,12 @@ export function PublicNav() {
               Marketplace
             </Link>
             <Link
+              href="/documentation"
+              className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
+            >
+              Documentation
+            </Link>
+            <Link
               href="/guide"
               className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
             >
