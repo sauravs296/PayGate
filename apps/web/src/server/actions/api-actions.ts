@@ -1,9 +1,9 @@
 "use server";
-
 import { getSession } from "@/lib/auth/session";
 import { createApi, updateApi, deactivateApi } from "@/lib/db/apis";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { setRouteOnChain } from "@/lib/stellar/soroban";
 
 export async function createApiAction(formData: FormData) {
   const session = await getSession();
@@ -14,13 +14,13 @@ export async function createApiAction(formData: FormData) {
   const description = formData.get("description") as string;
   const targetUrl = formData.get("targetUrl") as string;
   const priceUsdc = parseFloat(formData.get("priceUsdc") as string);
-  const isListed = formData.get("isListed") === "on";
+  const isListed = false;
 
   if (!name || !slug || !targetUrl || isNaN(priceUsdc)) {
     throw new Error("Missing required fields");
   }
 
-  await createApi({
+  const api = await createApi({
     developerId: session.developerId,
     name,
     slug,
@@ -30,10 +30,17 @@ export async function createApiAction(formData: FormData) {
     isListed,
   });
 
+  // Configure the routing on-chain for the API
+  await setRouteOnChain({
+    apiId: api.id,
+    developerWallet: session.developerId,
+    shareBps: 9000, // 90% goes to developer
+  });
+
   revalidatePath("/dashboard");
   revalidatePath("/apis");
   revalidatePath("/marketplace");
-  redirect("/apis?created=1");
+  redirect(`/apis/${api.id}?created=1`);
 }
 
 export async function updateApiAction(id: string, formData: FormData) {
@@ -44,7 +51,6 @@ export async function updateApiAction(id: string, formData: FormData) {
   const description = formData.get("description") as string;
   const targetUrl = formData.get("targetUrl") as string;
   const priceUsdc = parseFloat(formData.get("priceUsdc") as string);
-  const isListed = formData.get("isListed") === "on";
   const isActive = formData.get("isActive") === "on";
 
   await updateApi(id, session.developerId, {
@@ -52,7 +58,6 @@ export async function updateApiAction(id: string, formData: FormData) {
     description,
     targetUrl,
     priceUsdc,
-    isListed,
     isActive
   });
 
