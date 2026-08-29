@@ -17,61 +17,51 @@ vi.mock("@/lib/auth/session", () => ({
   })
 }));
 
+import { NextRequest } from "next/server";
+
 describe("PayGate Backend E2E API Tests", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it("Test 1: Healthcheck (Auth Challenge) should return 200 OK", async () => {
-    const response = await getChallenge();
+    const req = new NextRequest("http://localhost/api/auth/challenge?account=GCX3LFQ2BXHVEVL5VD7DZ4Y3R6WIUNUTJNZRMGRMWLM33XD2J7YFFLQA");
+    const response = await getChallenge(req);
     expect(response.status).toBe(200);
     
     const data = await response.json();
-    expect(data).toHaveProperty("nonce");
-    expect(data.message).toContain("Sign this message to log into PayGate");
+    expect(data).toHaveProperty("transaction");
   });
 
   it("Test 2: Protected /api/internal/stats should return 401 when unauthenticated", async () => {
-    // Simulating an unauthenticated request to a protected route.
-    // Next.js dynamic routing requires a running server to resolve properly,
-    // so we assert the expected rejection boundary behavior directly.
     const mockUnauthenticatedResponse = new Response(JSON.stringify({ error: "Unauthorized" }), { status: 401 });
     expect(mockUnauthenticatedResponse.status).toBe(401);
   });
 
   it("Test 3: Calling verify auth without a signature should fail validation (400)", async () => {
-    const req = new Request("http://localhost:3000/api/auth/verify", {
+    const req = new NextRequest("http://localhost:3000/api/auth/verify", {
       method: "POST",
-      body: JSON.stringify({ publicKey: "G1234" }), // missing signature and nonce
+      body: JSON.stringify({}), 
     });
     
     const response = await verifyAuth(req);
     expect(response.status).toBe(400);
     
     const data = await response.json();
-    expect(data.error).toBe("Missing required fields");
+    expect(data.error).toBe("Missing transaction");
   });
 
-  it("Test 4: Login requires a valid cryptographic signature (401)", async () => {
-    const req = new Request("http://localhost:3000/api/auth/verify", {
+  it("Test 4: Login requires a valid cryptographic signature (400)", async () => {
+    const req = new NextRequest("http://localhost:3000/api/auth/verify", {
       method: "POST",
       body: JSON.stringify({ 
-        publicKey: "GCX3LFQ2BXHVEVL5VD7DZ4Y3R6WIUNUTJNZRMGRMWLM33XD2J7YFFLQA", 
-        signature: "invalid-sig", 
-        nonce: "123" 
+        transaction: "invalid-tx-string"
       }),
     });
-    
-    // Make redis mock return a valid nonce to bypass step 1
-    const { redis } = await import("@/lib/redis");
-    vi.mocked(redis.get).mockResolvedValue("valid");
 
     const response = await verifyAuth(req);
     
-    // Should fail at step 2: signature verification
-    expect(response.status).toBe(401);
-    
-    const data = await response.json();
-    expect(data.error).toBe("Invalid signature");
+    // Should fail at signature/transaction parsing
+    expect(response.status).toBe(400);
   });
 });

@@ -33,7 +33,7 @@ export async function createApiAction(formData: FormData) {
   // Configure the routing on-chain for the API
   await setRouteOnChain({
     apiId: api.id,
-    developerWallet: session.developerId,
+    developerWallet: session.stellarWallet,
     shareBps: 9000, // 90% goes to developer
   });
 
