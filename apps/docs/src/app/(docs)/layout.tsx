@@ -12,12 +12,12 @@ export default function DocsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[#080810] text-zinc-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-black text-zinc-100 flex flex-col font-sans">
       <PublicNav />
       <div className="flex flex-1 max-w-[1400px] w-full mx-auto">
         <DocsSidebar />
         <main className="flex-1 overflow-y-auto px-6 py-10 md:px-12 md:py-16">
-          <div className="max-w-3xl prose prose-invert prose-violet">
+          <div className="max-w-3xl prose prose-invert">
             {children}
           </div>
         </main>

@@ -30,13 +30,13 @@ export default function DocsIntroPage() {
 
       <h3>What&apos;s Next?</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 not-prose mt-6">
-        <Link href="/documentation/features" className="group block p-4 border border-zinc-800 rounded-xl bg-zinc-900/50 hover:bg-zinc-800 transition-colors">
+        <Link href="/features" className="group block p-4 border border-zinc-800 rounded-xl bg-zinc-900/50 hover:bg-zinc-800 transition-colors">
           <h4 className="font-semibold text-zinc-100 mb-1 flex items-center">
             Features &amp; Architecture <ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
           </h4>
           <p className="text-sm text-zinc-400">Deep dive into how PayGate works under the hood.</p>
         </Link>
-        <Link href="/documentation/setup" className="group block p-4 border border-zinc-800 rounded-xl bg-zinc-900/50 hover:bg-zinc-800 transition-colors">
+        <Link href="/setup" className="group block p-4 border border-zinc-800 rounded-xl bg-zinc-900/50 hover:bg-zinc-800 transition-colors">
           <h4 className="font-semibold text-zinc-100 mb-1 flex items-center">
             Developer Setup <ArrowRight className="w-4 h-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
           </h4>

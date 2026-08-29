@@ -34,9 +34,9 @@ export function DocsSidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-full md:w-64 shrink-0 border-r border-zinc-800 bg-[#080810] h-[calc(100vh-64px)] sticky top-16 overflow-y-auto hidden md:block">
+    <aside className="w-full md:w-64 shrink-0 border-r border-zinc-800 bg-black h-[calc(100vh-64px)] sticky top-16 overflow-y-auto hidden md:block">
       <div className="p-6">
-        <div className="flex items-center gap-2 text-violet-400 font-semibold mb-8">
+        <div className="flex items-center gap-2 text-zinc-100 font-semibold mb-8">
           <BookOpen className="w-5 h-5" />
           PayGate Docs
         </div>
@@ -56,13 +56,13 @@ export function DocsSidebar() {
                         className={cn(
                           "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
                           isActive
-                            ? "bg-violet-500/10 text-violet-300 font-medium border border-violet-500/20"
+                            ? "bg-zinc-800 text-zinc-100 font-medium border border-zinc-700"
                             : "text-zinc-400 hover:text-zinc-200 hover:bg-zinc-900"
                         )}
                       >
                         <item.icon className="w-4 h-4 shrink-0" />
                         {item.title}
-                        {isActive && <ChevronRight className="w-3.5 h-3.5 ml-auto text-violet-500" />}
+                        {isActive && <ChevronRight className="w-3.5 h-3.5 ml-auto text-zinc-500" />}
                       </Link>
                     </li>
                   );
