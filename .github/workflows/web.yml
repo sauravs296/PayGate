@@ -15,18 +15,18 @@ jobs:
       UPSTASH_REDIS_REST_URL: "https://fake.upstash.io"
       UPSTASH_REDIS_REST_TOKEN: "fake_token"
       STELLAR_NETWORK: "testnet"
-      PAYGATE_TREASURY_WALLET: ${{ secrets.PAYGATE_TREASURY_WALLET }}
+      PAYGATE_TREASURY_WALLET: "${{ secrets.PAYGATE_TREASURY_WALLET }}"
       SOROBAN_CONTRACT_ID: "CDOF7XY3MGEKY3MNNJF5STMADAQRAFSHXP7WQIOCPEXM7O3BTPZYF7WH"
       SOROBAN_USDC_CONTRACT: "CDOF7XY3MGEKY3MNNJF5STMADAQRAFSHXP7WQIOCPEXM7O3BTPZYF7WH"
-      PAYGATE_TREASURY_SECRET_KEY: ${{ secrets.PAYGATE_TREASURY_SECRET_KEY }}
-      AGENT_STELLAR_SECRET_KEY: ${{ secrets.AGENT_STELLAR_SECRET_KEY }}
+      PAYGATE_TREASURY_SECRET_KEY: "${{ secrets.PAYGATE_TREASURY_SECRET_KEY }}"
+      AGENT_STELLAR_SECRET_KEY: "${{ secrets.AGENT_STELLAR_SECRET_KEY }}"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-      - run: npm install
+      - run: npm install --legacy-peer-deps --foreground-scripts --no-fund
       - run: npx prisma generate
         working-directory: apps/web
       - run: npm run lint
