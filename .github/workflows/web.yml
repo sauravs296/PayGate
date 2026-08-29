@@ -1,4 +1,4 @@
-name: CI
+name: Web App CI
 
 on:
   push:
@@ -6,36 +6,18 @@ on:
   pull_request:
 
 jobs:
-  # Layer 1 — Soroban contract unit tests (fast, no network)
-  contract-tests:
-    name: Contract Tests (Rust)
+  web-tests:
+    name: Web App Tests (Lint, Build)
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-        with:
-          targets: wasm32-unknown-unknown
-      - name: Run Soroban unit tests
-        run: cd contracts && cargo test --workspace
-
-  # Layer 2 — Next.js Application tests (Lint + Build)
-  app-tests:
-    name: App Tests (Lint, Build)
-    runs-on: ubuntu-latest
-    # Stub env vars so `next build` can load modules without real secrets.
-    # Sensitive keys are read from GitHub Secrets — never hardcoded here.
     env:
       DATABASE_URL: "postgresql://fake:fake@localhost:5432/fake"
       DIRECT_URL: "postgresql://fake:fake@localhost:5432/fake"
       UPSTASH_REDIS_REST_URL: "https://fake.upstash.io"
       UPSTASH_REDIS_REST_TOKEN: "fake_token"
       STELLAR_NETWORK: "testnet"
-      # Public wallet address — not sensitive
       PAYGATE_TREASURY_WALLET: ${{ secrets.PAYGATE_TREASURY_WALLET }}
-      # Stub contract IDs — non-sensitive placeholder strings for build only
       SOROBAN_CONTRACT_ID: "CDOF7XY3MGEKY3MNNJF5STMADAQRAFSHXP7WQIOCPEXM7O3BTPZYF7WH"
       SOROBAN_USDC_CONTRACT: "CDOF7XY3MGEKY3MNNJF5STMADAQRAFSHXP7WQIOCPEXM7O3BTPZYF7WH"
-      # Secret keys pulled from GitHub Secrets — never hardcoded
       PAYGATE_TREASURY_SECRET_KEY: ${{ secrets.PAYGATE_TREASURY_SECRET_KEY }}
       AGENT_STELLAR_SECRET_KEY: ${{ secrets.AGENT_STELLAR_SECRET_KEY }}
     steps:
@@ -53,5 +35,3 @@ jobs:
         working-directory: apps/web
       - run: npm run build
         working-directory: apps/web
-      - run: npm run build
-        working-directory: apps/docs
