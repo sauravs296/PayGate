@@ -29,8 +29,8 @@
 
 - **Live Application**: [https://paygate-stellar-swart.vercel.app/](https://paygate-stellar-swart.vercel.app/) *(Live PayGate Application)*
 - **Documentation**: [https://paygate-stellar-docs.vercel.app](https://paygate-stellar-docs.vercel.app) *(Official PayGate Documentation)*
-- **Demo Video**: [https://youtu.be/We9RWRjFwhE](https://youtu.be/We9RWRjFwhE) *(Demo Video)*
-
+- **Demo Video**: [https://youtu.be/We9RWRjFwhE](https://youtu.be/We9RWRjFwhE)
+- **Product Presentation**: [Pitch Deck](https://docs.google.com/presentation/d/15E_DW4QLpHEOPaBc1RR-19-DtCQF3gpUOGvkk8_NLik/edit?usp=sharing)
 ---
 
 ## 🛑 The Problem
