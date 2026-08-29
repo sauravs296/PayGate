@@ -49,5 +49,9 @@ jobs:
         working-directory: apps/web
       - run: npm run lint
         working-directory: apps/web
+      - run: npm run test
+        working-directory: apps/web
       - run: npm run build
         working-directory: apps/web
+      - run: npm run build
+        working-directory: apps/docs
