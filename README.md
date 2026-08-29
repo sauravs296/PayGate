@@ -29,7 +29,7 @@
 
 - **Live Application**: [https://paygate-stellar-swart.vercel.app/](https://paygate-stellar-swart.vercel.app/) *(Live PayGate Application)*
 - **GitHub Repository**: [https://github.com/sauravs296/PayGate](https://github.com/sauravs296/PayGate)
-- **Documentation**: [https://paygate-stellar-swart.vercel.app/documentation](https://paygate-stellar-swart.vercel.app/documentation) *(Official PayGate Documentation)*
+- **Documentation**: [https://paygate-docs.vercel.app](https://paygate-docs.vercel.app) *(Official PayGate Documentation)*
 - **Demo Video**: [Watch the PayGate MVP Demo](https://youtu.be/We9RWRjFwhE)
 
 ---
@@ -130,9 +130,9 @@ We are constantly improving PayGate based on developer feedback.
 |:---:|:---:|
 | ![Settings](assets/settings.png)<br>*Manage your profile and notification preferences.* | ![My APIs](assets/my-api.png)<br>*Manage and configure your registered paywalled endpoints.* |
 
-| Vercel Analytics | |
+| Vercel Analytics | On-Chain Activity |
 |:---:|:---:|
-| ![Vercel Analytics](assets/analytics.png)<br>*Analytics added via Vercel Analytics to track traffic and usage.* | |
+| ![Vercel Analytics](assets/analytics.png)<br>*Analytics added via Vercel Analytics to track traffic and usage.* | ![On-Chain Transaction](assets/onchain-transaction.png)<br>*Transparent on-chain activity of the user on the Stellar network in this platform.* |
 
 ### 📱 Mobile Experience
 
@@ -272,7 +272,7 @@ PayGate ensures robust error handling across the entire payment and proxy lifecy
 
 ---
 
-## 💎 Soroban Smart Contracts (SCF Upgrade)
+## 💎 Soroban Smart Contracts
 To ensure true decentralization and on-chain verifiable behaviors, PayGate utilizes two custom Soroban smart contracts:
 1. **PayGate Router (`contracts/paygate-router`)**: A decentralized router that automatically splits the paid USDC between the API Developer (e.g. 90%) and the Protocol Treasury (10%) seamlessly on-chain using the standard Stellar Asset Contract token client.
 2. **PayGate Reputation (`contracts/paygate-reputation`)**: A staking and voting contract. Developers must stake a minimum of 1 USDC to have their API listed on the public marketplace, effectively curbing spam. Users can cast upvotes and downvotes on-chain to rank the APIs.
