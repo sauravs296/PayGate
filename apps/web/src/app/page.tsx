@@ -93,7 +93,7 @@ export default async function LandingPage() {
               variant="outline"
               className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white px-8"
             >
-              <a href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"} target="_blank" rel="noopener noreferrer">
+              <a href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-stellar-docs.vercel.app"} target="_blank" rel="noopener noreferrer">
                 Read Docs <BookOpen className="ml-2 h-4 w-4" />
               </a>
             </Button>
@@ -214,10 +214,10 @@ export default async function LandingPage() {
           <div>
             <h4 className="font-semibold text-zinc-100 mb-4">Documentation</h4>
             <ul className="space-y-3 text-sm text-zinc-400">
-              <li><a href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Overview</a></li>
-              <li><a href={`${process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"}/documentation/features`} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Features & Architecture</a></li>
-              <li><a href={`${process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"}/documentation/setup`} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Developer Setup</a></li>
-              <li><a href={`${process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"}/documentation/usage`} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Usage & Consumption</a></li>
+              <li><a href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-stellar-docs.vercel.app"} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Overview</a></li>
+              <li><a href={`${process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-stellar-docs.vercel.app"}/features`} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Features & Architecture</a></li>
+              <li><a href={`${process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-stellar-docs.vercel.app"}/setup`} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Developer Setup</a></li>
+              <li><a href={`${process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-stellar-docs.vercel.app"}/usage`} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Usage & Consumption</a></li>
             </ul>
           </div>
 

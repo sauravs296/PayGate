@@ -19,7 +19,7 @@ export function PublicNav() {
               Marketplace
             </a>
             <Link
-              href="/documentation"
+              href="/"
               className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
             >
               Documentation

@@ -16,16 +16,16 @@ const NAV_ITEMS = [
   {
     title: "Overview",
     items: [
-      { title: "Introduction", href: "/documentation", icon: BookOpen },
-      { title: "Features & Architecture", href: "/documentation/features", icon: Zap },
+      { title: "Introduction", href: "/", icon: BookOpen },
+      { title: "Features & Architecture", href: "/features", icon: Zap },
     ],
   },
   {
     title: "Getting Started",
     items: [
-      { title: "Developer Setup", href: "/documentation/setup", icon: Settings },
-      { title: "Usage & Consumption", href: "/documentation/usage", icon: Terminal },
-      { title: "Smart Contracts", href: "/documentation/contracts", icon: Shield },
+      { title: "Developer Setup", href: "/setup", icon: Settings },
+      { title: "Usage & Consumption", href: "/usage", icon: Terminal },
+      { title: "Smart Contracts", href: "/contracts", icon: Shield },
     ],
   },
 ];

@@ -19,7 +19,7 @@ export function PublicNav() {
               Marketplace
             </Link>
             <a
-              href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"}
+              href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-stellar-docs.vercel.app"}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
