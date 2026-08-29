@@ -93,9 +93,9 @@ export default async function LandingPage() {
               variant="outline"
               className="border-zinc-700 text-zinc-300 hover:bg-zinc-800 hover:text-white px-8"
             >
-              <Link href="/documentation">
+              <a href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"} target="_blank" rel="noopener noreferrer">
                 Read Docs <BookOpen className="ml-2 h-4 w-4" />
-              </Link>
+              </a>
             </Button>
           </div>
         </div>
@@ -198,17 +198,58 @@ export default async function LandingPage() {
       </section>
 
       {/* ── Footer ───────────────────────────────────────────────────────── */}
-      <footer className="border-t border-zinc-800/50 py-8 px-4 text-center text-sm text-zinc-600">
-        <p>
-          © {new Date().getFullYear()} PayGate · Built on{" "}
-          <a href="https://stellar.org" target="_blank" rel="noreferrer" className="hover:text-zinc-400 transition-colors">
-            Stellar
-          </a>{" "}
-          &amp;{" "}
-          <a href="https://x402.org" target="_blank" rel="noreferrer" className="hover:text-zinc-400 transition-colors">
-            x402
-          </a>
-        </p>
+      <footer className="border-t border-zinc-800/50 py-12 px-4 bg-[#080810]">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <div className="flex items-center gap-2 mb-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.png" alt="PayGate" className="w-6 h-6 object-contain" />
+              <span className="font-bold tracking-tight">PayGate</span>
+            </div>
+            <p className="text-sm text-zinc-500">
+              The open standard for AI-to-API micro-payments on Stellar.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-semibold text-zinc-100 mb-4">Documentation</h4>
+            <ul className="space-y-3 text-sm text-zinc-400">
+              <li><a href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Overview</a></li>
+              <li><a href={`${process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"}/documentation/features`} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Features & Architecture</a></li>
+              <li><a href={`${process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"}/documentation/setup`} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Developer Setup</a></li>
+              <li><a href={`${process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"}/documentation/usage`} className="hover:text-violet-400 transition-colors" target="_blank" rel="noopener noreferrer">Usage & Consumption</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-zinc-100 mb-4">Product</h4>
+            <ul className="space-y-3 text-sm text-zinc-400">
+              <li><Link href="/marketplace" className="hover:text-violet-400 transition-colors">Marketplace</Link></li>
+              <li><Link href="/guide" className="hover:text-violet-400 transition-colors">Developer Guide</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-semibold text-zinc-100 mb-4">Community</h4>
+            <ul className="space-y-3 text-sm text-zinc-400">
+              <li><a href="https://github.com/sauravs296/PayGate" target="_blank" rel="noreferrer" className="hover:text-violet-400 transition-colors">GitHub Repository</a></li>
+              <li><a href="https://forms.gle/uXD8V1NSdWmEhp7z7" target="_blank" rel="noreferrer" className="hover:text-violet-400 transition-colors">Submit Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="text-center text-sm text-zinc-600 max-w-6xl mx-auto pt-8 border-t border-zinc-800/50">
+          <p>
+            © {new Date().getFullYear()} PayGate · Built on{" "}
+            <a href="https://stellar.org" target="_blank" rel="noreferrer" className="hover:text-zinc-400 transition-colors">
+              Stellar
+            </a>{" "}
+            &amp;{" "}
+            <a href="https://x402.org" target="_blank" rel="noreferrer" className="hover:text-zinc-400 transition-colors">
+              x402
+            </a>
+          </p>
+        </div>
       </footer>
     </div>
   );
