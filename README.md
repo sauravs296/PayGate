@@ -7,9 +7,6 @@
 **The open standard for AI-to-API micro-payments on Stellar.**
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-[![Live App](https://img.shields.io/badge/Live_App-paygate--stellar--swart.vercel.app-blue?style=for-the-badge&logo=vercel)](https://paygate-stellar-swart.vercel.app/)
-[![Documentation](https://img.shields.io/badge/Documentation-Docs-purple?style=for-the-badge&logo=readthedocs)](https://paygate-stellar-docs.vercel.app)
-[![Demo Video](https://img.shields.io/badge/Demo_Video-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/We9RWRjFwhE)
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
@@ -31,9 +28,8 @@
 ## 🔗 Important Links
 
 - **Live Application**: [https://paygate-stellar-swart.vercel.app/](https://paygate-stellar-swart.vercel.app/) *(Live PayGate Application)*
-- **GitHub Repository**: [https://github.com/sauravs296/PayGate](https://github.com/sauravs296/PayGate)
 - **Documentation**: [https://paygate-stellar-docs.vercel.app](https://paygate-stellar-docs.vercel.app) *(Official PayGate Documentation)*
-- **Demo Video**: [Watch the PayGate MVP Demo](https://youtu.be/We9RWRjFwhE)
+- **Demo Video**: [https://youtu.be/We9RWRjFwhE](https://youtu.be/We9RWRjFwhE) *(Demo Video)*
 
 ---
 
