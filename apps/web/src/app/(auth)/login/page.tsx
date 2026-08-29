@@ -32,7 +32,6 @@ export default function LoginPage() {
 
       // 3. Ask the wallet to sign the challenge transaction (SEP-10)
       const networkPassphrase = process.env.NEXT_PUBLIC_STELLAR_NETWORK === "pubnet" ? "Public Global Stellar Network ; September 2015" : "Test SDF Network ; September 2015";
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { signedTxXdr } = await kit.signTransaction(transaction, { networkPassphrase });
 
       // 4. Verify the signature server-side and create session

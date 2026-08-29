@@ -18,12 +18,14 @@ export function PublicNav() {
             >
               Marketplace
             </Link>
-            <Link
-              href="/documentation"
+            <a
+              href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-docs.vercel.app"}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"
             >
               Documentation
-            </Link>
+            </a>
             <Link
               href="/guide"
               className="text-sm font-medium text-zinc-400 hover:text-white transition-colors"

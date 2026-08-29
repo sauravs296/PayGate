@@ -144,9 +144,15 @@ export default async function DashboardPage() {
                 </div>
                 <p className="text-xs text-zinc-500 mt-1">Lifetime settled</p>
               </div>
-              <Button size="sm" variant="outline" className="h-7 text-xs border-teal-500/30 bg-teal-500/10 text-teal-400 hover:bg-teal-500/20" disabled title="Withdrawals to Stellar wallet coming soon">
-                Withdraw
-              </Button>
+              <a
+                href={`https://stellar.expert/explorer/${process.env.NEXT_PUBLIC_STELLAR_NETWORK === "pubnet" ? "public" : "testnet"}/account/${session.stellarWallet}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View auto-settled transactions on Stellar Expert"
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-xs font-medium h-7 px-3 border border-teal-500/30 bg-teal-500/10 text-teal-400 hover:bg-teal-500/20 transition-colors"
+              >
+                <Zap className="w-3 h-3 mr-1.5" /> Auto-Settled
+              </a>
             </div>
           </CardContent>
         </Card>

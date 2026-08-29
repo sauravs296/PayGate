@@ -22,20 +22,29 @@ export function StakeToPublish({ apiId, isListed }: { apiId: string; isListed: b
       info("Building transaction…", "Please wait while we prepare the Soroban transaction.");
 
       // 1. Build XDR on server
-      const xdr = await buildStakeTransactionAction(apiId, 1.0); // 1 USDC stake
+      const buildResult = await buildStakeTransactionAction(apiId, 1.0); // 1 USDC stake
+      if (!buildResult.success) {
+        error("Staking failed", buildResult.error);
+        setIsLoading(false);
+        return;
+      }
 
       info("Signing required", "Please approve the transaction in your wallet.");
 
       // 2. Sign with wallet
       const kit = getWalletKit();
       const networkPassphrase = process.env.NEXT_PUBLIC_STELLAR_NETWORK === "pubnet" ? "Public Global Stellar Network ; September 2015" : "Test SDF Network ; September 2015";
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { signedTxXdr } = await kit.signTransaction(xdr, { networkPassphrase });
+      const { signedTxXdr } = await kit.signTransaction(buildResult.xdr, { networkPassphrase });
 
       info("Submitting transaction…", "Sending to the Stellar network.");
 
       // 3. Submit
-      await submitStakeTransactionAction(apiId, signedTxXdr);
+      const submitResult = await submitStakeTransactionAction(apiId, signedTxXdr);
+      if (!submitResult.success) {
+        error("Staking failed", submitResult.error);
+        setIsLoading(false);
+        return;
+      }
 
       success("API Published!", "Your API is now staked and listed in the marketplace.");
     } catch (err: unknown) {
