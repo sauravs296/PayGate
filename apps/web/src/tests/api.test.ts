@@ -3,6 +3,9 @@ import { GET as getChallenge } from "@/app/api/auth/challenge/route";
 import { POST as verifyAuth } from "@/app/api/auth/verify/route";
 
 // Mock external dependencies to ensure fast, isolated tests
+process.env.PAYGATE_TREASURY_SECRET_KEY = "SAG7RLKPCG44Z6VBZ4EARBA5W56HQE4VK3LJJDUHDWAKZS3UU6UC6D6N";
+process.env.STELLAR_NETWORK = "testnet";
+
 vi.mock("@/lib/redis", () => ({
   redis: {
     set: vi.fn(),
