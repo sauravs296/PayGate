@@ -16,9 +16,9 @@
 
 <br />
 
-[![CI Pipeline](https://github.com/sauravs296/PayGate/actions/workflows/ci.yml/badge.svg)](https://github.com/sauravs296/PayGate/actions/workflows/ci.yml)
-[![Smart Contract CI](https://img.shields.io/badge/Contract_Tests-Rust%20%7C%20Passing-success?style=flat&logo=rust&logoColor=white)](https://github.com/sauravs296/PayGate/actions/workflows/ci.yml)
-[![Frontend CI](https://img.shields.io/badge/Frontend_CI-Lint%20%26%20Build%20%7C%20Passing-success?style=flat&logo=next.js&logoColor=white)](https://github.com/sauravs296/PayGate/actions/workflows/ci.yml)
+[![Web App CI](https://github.com/sauravs296/PayGate/actions/workflows/web.yml/badge.svg)](https://github.com/sauravs296/PayGate/actions/workflows/web.yml)
+[![Contracts CI](https://github.com/sauravs296/PayGate/actions/workflows/contracts.yml/badge.svg)](https://github.com/sauravs296/PayGate/actions/workflows/contracts.yml)
+[![Docs CI](https://github.com/sauravs296/PayGate/actions/workflows/docs.yml/badge.svg)](https://github.com/sauravs296/PayGate/actions/workflows/docs.yml)
 [![CD Deployment](https://img.shields.io/badge/CD_Deployment-Vercel%20Live-0070F3?style=flat&logo=vercel&logoColor=white)](https://paygate-stellar-swart.vercel.app/)
 
 </div>
@@ -104,7 +104,19 @@ We are constantly improving PayGate based on developer feedback.
 | Sk. Asraf Ali | `GBY5SUTENI56R6I2O2C6Y3IT6YD2STF76DDUXPILZU4NIEEP7RQCAWSI` | 3/5 | 4/5 | Good | Excellent | Good | Low transaction fees, Ease of use, Fast processing time, Integration options | No bugs till now | The UI is good and overll implementation is nice | 9/10 | NiL |
 | Ratul Pramanik | `GAQKUIGCICSMZ6UCUHAH7PVI7VIFKK464M5RIARN77VXO4KAV2RTNYSU` | 3/5 | 5/5 | Excellent | Excellent | Excellent | Ease of use, Fast processing time, Integration options | No error got | No its all good | 8/10 | NiL |
 | Haris Khan | `GDSHPINMELPVJEFCBVO5ZQYYB2CC7YQPGM2L3UPOIJLROO5MAMIIYO7X` | 1/5 | 4/5 | Excellent | Excellent | Excellent | Ease of use, Fast processing time | No bugs found | Paygate is good for developer | 8/10 | NiL |
-
+| Taniya Roy | `GDAUYKURO274AJDEBF5JZDUP5RDBQM6PGUSRVZ7LVSPU25HMBRUQRPY6` | 2/5 | 4/5 | Good | Excellent | Good | Low transaction fees, Ease of use, Fast processing time | No error | I like the playgorund and its great to to direct give a testing place | 8/10 | NiL |
+| Akhil Tiwari | `GAJUWETQPUT4RH6BHWDQOMC6EPTMMW4Q3IW46KSMCZLN7Y25NCLQBOV3` | 2/5 | 5/5 | Excellent | Good | Excellent | Low transaction fees, Ease of use, Fast processing time | No error found all good | Its good for developers | 8/10 | NiL |
+| Sagnik Naidu | `GCKCB3VVRFWTDIIQ6E2VFRIKCGE4CZEWHWZJCLWCPG37VGAPMKWNW4TW` | 2/5 | 5/5 | Good | Excellent | Good | Low transaction fees, Ease of use, Fast processing time, Integration options | NA | If you could attach your feedback from link in the landing page then it will be a good for taking your feedbacks | 9/10 | [`2bce26e`](https://github.com/sauravs296/PayGate/commit/2bce26e) |
+| Mayunk Pandey | `GCCOAGPSAKD5E6ES2DIU64NXWG6O4M4HP5JXFMYLV3NR5SXOX2TCWEDQ` | 2/5 | 4/5 | Good | Excellent | Good | Low transaction fees, Ease of use, Fast processing time | Once logged in, the sidebar only displays Dashboard, My APIs, and Settings. A user has to manually type the URL or log out to visit the Marketplace, Documentation, or Developer Guide. | so pelasea fix the above other than that no issue or bugs encountered | 8/10 | [PENDING] |
+| Soumyanil Acharya | `GAPVN4B4EYFBFR5GKKKAITUXPUWWZ7VQCWK7273A2MT46K7ZBA4ILITI` | 2/5 | 4/5 | Good | Excellent | Good | Low transaction fees, Ease of use, Fast processing time | NA | Its is very good platform | 8/10 | NiL |
+| Udansgshu Das | `GALKUNV3QKBIP37JCQXXDOCZBRKBCA52JRCOH2442GHSRHOWG3RPPWTL` | 3/5 | 4/5 | Excellent | Excellent | Excellent | Low transaction fees, Ease of use, Fast processing time, Integration options, Other | I didm't anything like that | Overall product is great and also make sure that the documentation part is well handled taht is very important for a developer friendly app | 9/10 | [`3d8da13`](https://github.com/sauravs296/PayGate/commit/3d8da13) |
+| Swastik Sen | `GAXPJXWRLLZWRGJWYDWM7ZQ4RBV77CKRN6BZYPBK7IWLBB7MLUS6P2T3` | 2/5 | 4/5 | Good | Excellent | Good | Low transaction fees, Ease of use, Fast processing time, Integration options | Every thing is fine | No suggestion | 9/10 | NiL |
+| Tahir Rehman | `GCSHXA2QD4RS35O2D7OCIRUT6ONNHDWN42YAFTQUT6NWGKGCUGBASQNQ` | 4/5 | 5/5 | Good | Excellent | Good | Low transaction fees, Ease of use, Fast processing time, Integration options | No errors | Satisfied with the x402 implementation in your product. | 9/10 | NiL |
+| Debdut Mondal | `GBA6F4HQIJ6UY7WXUH2KRMHYIVX57MRFWZP7QS7EB267MYCKJARMH6UP` | 3/5 | 5/5 | Good | Excellent | Good | Low transaction fees, Ease of use, Fast processing time | While staking my API for marketplace launch encountered an error please check that once | Just make it correct other than that everything is good | 9/10 | [`4e1b2e4`](https://github.com/sauravs296/PayGate/commit/4e1b2e4) |
+| Soumitra Nath | `GAREG55YYVOTXCA6MK3RKMFNJ2VPNIET3VIEFFJTCQAVFUHFI6CDVGPN` | 2/5 | 5/5 | Good | Good | Excellent | Low transaction fees, Ease of use, Fast processing time, Integration options | No | Excellent Product | 9/10 | NiL |
+| Sohon Roy | `GDX4565AJ4DBGP3HGDIV7F6QJ3IPOVDLG3BOXTHS5ITWKJMEWND3Y7HK` | 3/5 | 5/5 | Excellent | Excellent | Excellent | Low transaction fees, Ease of use, Fast processing time, Integration options | Nothing | I like the multi wallet connect feature I can use any supppoted wallet its good | 9/10 | NiL |
+| Shrey Dutta | `GDCP2LXKUNBHFV4FPG4SDRIIQ5WVJ2OWH7WJWBHOK5TCNXKSDI74O32G` | 4/5 | 4/5 | Good | Excellent | Good | Low transaction fees, Ease of use, Fast processing time, Integration options | Na | the landing page's current minimal footer, which currently consists of just a single copyright line, to a more comprehensive, multi-column layout. This updated footer is designed to improve navigation by organizing quick links into two distinct categories: a "Platform" section containing resources like the Marketplace, Playground, Documentation, and Developer Guide, and a "Community & Links" section that directs users to the GitHub Repository, a Demo Video, the Stellar Explorer, and a Feedback Form. | 9/10 | [`2bce26e`](https://github.com/sauravs296/PayGate/commit/2bce26e) |
+| Harpinder Singh | `GAS6ZE6F6JD7VKPXHAHFIJ4WXEQHH5WEEKBNNMZSN4T3IPWJQWGNDP6R` | 3/5 | 5/5 | Excellent | Excellent | Excellent | Low transaction fees, Ease of use, Fast processing time, Integration options, Other | Its good product and I didn't anything like that. | No its all good platform I like its features | 10/10 | NiL |
 ---
 
 ## 📸 Platform Showcase
