@@ -10,7 +10,10 @@ import {
   Settings, 
   LogOut,
   Menu,
-  X
+  X,
+  Store,
+  BookOpen,
+  Map
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -75,8 +78,38 @@ export function MobileNav({ walletAddress, totalEarnings }: { walletAddress: str
               )
             })}
           </nav>
+
+          <div className="pt-2 pb-2 mb-2 border-y border-zinc-800">
+            <p className="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-zinc-500">Resources</p>
+            <Link 
+              href="/marketplace"
+              onClick={closeMenu}
+              className="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
+            >
+              <Store className="w-5 h-5 text-zinc-500" />
+              Marketplace
+            </Link>
+            <a 
+              href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-stellar-docs.vercel.app"}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+              className="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
+            >
+              <BookOpen className="w-5 h-5 text-zinc-500" />
+              Documentation
+            </a>
+            <Link 
+              href="/guide"
+              onClick={closeMenu}
+              className="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
+            >
+              <Map className="w-5 h-5 text-zinc-500" />
+              Developer Guide
+            </Link>
+          </div>
           
-          <div className="pt-4 border-t border-zinc-800 flex flex-col gap-3">
+          <div className="pt-2 flex flex-col gap-3">
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 shadow-sm relative overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-br from-violet-500/10 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               

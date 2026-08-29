@@ -7,7 +7,10 @@ import {
   LayoutDashboard, 
   TerminalSquare, 
   Settings, 
-  LogOut
+  LogOut,
+  Store,
+  BookOpen,
+  Map
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
@@ -62,6 +65,33 @@ export function AppSidebar({ walletAddress, totalEarnings }: { walletAddress: st
             </Link>
           )
         })}
+
+        <div className="pt-4 mt-4 border-t border-zinc-800/50">
+          <p className="px-3 mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-500">Resources</p>
+          <Link 
+            href="/marketplace"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
+          >
+            <Store className="w-5 h-5 text-zinc-500" />
+            Marketplace
+          </Link>
+          <a 
+            href={process.env.NEXT_PUBLIC_DOCS_URL || "https://paygate-stellar-docs.vercel.app"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
+          >
+            <BookOpen className="w-5 h-5 text-zinc-500" />
+            Documentation
+          </a>
+          <Link 
+            href="/guide"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/50"
+          >
+            <Map className="w-5 h-5 text-zinc-500" />
+            Developer Guide
+          </Link>
+        </div>
       </nav>
 
       <div className="pt-6 border-t border-zinc-800/50 mt-auto">

@@ -27,7 +27,7 @@ export async function buildStakeTransactionAction(apiId: string, amountUsdc: num
     let account;
     try {
       account = await server.getAccount(developerAddress);
-    } catch (_err) {
+    } catch {
       return { success: false as const, error: "Could not load Stellar account. Ensure your wallet is funded with XLM." };
     }
     
