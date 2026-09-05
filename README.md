@@ -143,7 +143,7 @@ We are constantly improving PayGate based on developer feedback.
 
 | Vercel Analytics | On-Chain Activity |
 |:---:|:---:|
-| ![Vercel Analytics](assets/analytics.png)<br>*Analytics added via Vercel Analytics to track traffic and usage.* | ![On-Chain Transaction](assets/onchain transaction-proof.png)<br>*Transparent on-chain activity of the user on the Stellar network in this platform.* |
+| ![Vercel Analytics](assets/analytics.png)<br>*Analytics added via Vercel Analytics to track traffic and usage.* | ![On-Chain Transaction](assets/onchain-transaction-proof.png)<br>*Transparent on-chain activity of the user on the Stellar network in this platform.* |
 
 ### 📱 Mobile Experience
 
