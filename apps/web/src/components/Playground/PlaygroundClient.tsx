@@ -70,15 +70,31 @@ export function PlaygroundClient({
     }
   };
 
+  // Restore wallet connection on page reload if previously connected
+  useEffect(() => {
+    const savedAddress = localStorage.getItem("paygate_playground_wallet");
+    if (savedAddress) {
+      setWalletAddress(savedAddress);
+      void fetchBalance(savedAddress);
+    }
+  }, []);
+
   const handleConnect = async () => {
     try {
       const kit = getWalletKit();
       const { address } = await kit.authModal();
       setWalletAddress(address);
+      localStorage.setItem("paygate_playground_wallet", address);
       await fetchBalance(address);
     } catch (err) {
       console.error("Wallet connection failed", err);
     }
+  };
+
+  const handleDisconnect = () => {
+    setWalletAddress(null);
+    setUsdcBalance(null);
+    localStorage.removeItem("paygate_playground_wallet");
   };
 
   const handleFundUsdc = async () => {
@@ -210,6 +226,14 @@ export function PlaygroundClient({
                     {usdcBalance} USDC
                   </span>
                 )}
+                <button
+                  type="button"
+                  onClick={handleDisconnect}
+                  className="ml-1 text-[10px] text-zinc-500 hover:text-red-400 font-medium transition-colors"
+                  title="Disconnect wallet"
+                >
+                  ✕
+                </button>
               </div>
 
               {/* Fund USDC button */}
