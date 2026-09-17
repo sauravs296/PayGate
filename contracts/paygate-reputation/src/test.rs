@@ -47,10 +47,38 @@ fn test_reputation() {
 
     // Vote
     client.vote(&caller, &api_id, &true);
+
+    // Fast-forward ledger past the 24h timelock (17,280 ledgers)
+    env.ledger().set_sequence_number(env.ledger().sequence() + MIN_STAKING_DURATION_LEDGERS + 1);
     
     // Unstake
     client.unstake_api(&api_id);
     
     assert_eq!(token.balance(&developer), 100000000);
     assert_eq!(token.balance(&contract_id), 0);
+}
+
+#[test]
+#[should_panic(expected = "timelock active: minimum 24-hour staking duration required")]
+fn test_reputation_timelock_panics_before_duration() {
+    let env = Env::default();
+    env.mock_all_auths();
+
+    let contract_id = env.register_contract(None, PayGateReputation);
+    let client = PayGateReputationClient::new(&env, &contract_id);
+
+    let admin = Address::generate(&env);
+    let developer = Address::generate(&env);
+    
+    let token_admin = Address::generate(&env);
+    let (token, token_admin_client) = create_token_contract(&env, &token_admin);
+    token_admin_client.mint(&developer, &100000000);
+
+    client.init(&admin, &token.address);
+
+    let api_id = String::from_str(&env, "demo-ai");
+    client.stake_api(&developer, &api_id, &50000000);
+
+    // Attempt to unstake immediately without waiting for timelock
+    client.unstake_api(&api_id);
 }
