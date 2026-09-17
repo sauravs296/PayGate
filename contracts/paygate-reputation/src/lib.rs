@@ -12,11 +12,16 @@ pub struct ApiStake {
     pub amount: i128,
     pub upvotes: u32,
     pub downvotes: u32,
+    pub staked_at_ledger: u32,
 }
 
 const STAKE_PREFIX: Symbol = symbol_short!("stake");
 const ADMIN: Symbol = symbol_short!("admin");
 const TOKEN: Symbol = symbol_short!("token");
+
+/// Minimum duration (in ledgers) before staked funds can be withdrawn.
+/// On Stellar, 1 ledger ~ 5 seconds => 17,280 ledgers per 24 hours.
+pub const MIN_STAKING_DURATION_LEDGERS: u32 = 17_280;
 
 #[contract]
 pub struct PayGateReputation;
@@ -58,6 +63,7 @@ impl PayGateReputation {
             amount,
             upvotes: 0,
             downvotes: 0,
+            staked_at_ledger: env.ledger().sequence(),
         };
         env.storage().persistent().set(&key, &stake);
         
@@ -85,12 +91,17 @@ impl PayGateReputation {
     }
     
     /// Unstake and return funds to developer.
-    /// In a production scenario, this might have a 7-day cooldown.
+    /// Enforces a 24-hour (17,280 ledgers) timelock from initial stake to prevent flash-listing attacks.
     pub fn unstake_api(env: Env, api_id: String) {
         let key = (STAKE_PREFIX, api_id.clone());
         let stake: ApiStake = env.storage().persistent().get(&key).expect("API not staked");
         
         stake.developer.require_auth();
+
+        let current_ledger = env.ledger().sequence();
+        if current_ledger < stake.staked_at_ledger + MIN_STAKING_DURATION_LEDGERS {
+            panic!("timelock active: minimum 24-hour staking duration required");
+        }
         
         let token_address: Address = env.storage().instance().get(&TOKEN).unwrap();
         let token_client = TokenClient::new(&env, &token_address);
