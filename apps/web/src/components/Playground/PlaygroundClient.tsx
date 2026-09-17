@@ -43,11 +43,30 @@ export function PlaygroundClient({
   const [responseData, setResponseData] = useState<Record<string, unknown> | null>(null);
   const [txHash, setTxHash] = useState<string | null>(null);
   const [hasDone, setHasDone] = useState(false);
+  const [fiatRates, setFiatRates] = useState<{ eur: number; gbp: number } | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
 
   const addLog = (msg: string, type: LogEntry["type"] = "info") => {
     setLogs((prev) => [...prev, { id: Math.random().toString(), msg, type }]);
   };
+
+  useEffect(() => {
+    // Fetch live USD to EUR/GBP conversion rates from open frankfurter.app API
+    fetch("https://api.frankfurter.app/latest?from=USD&to=EUR,GBP")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.rates) {
+          setFiatRates({
+            eur: data.rates.EUR ?? 0.92,
+            gbp: data.rates.GBP ?? 0.79,
+          });
+        }
+      })
+      .catch(() => {
+        // Graceful fallback estimates if external rate API fails
+        setFiatRates({ eur: 0.92, gbp: 0.79 });
+      });
+  }, []);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -271,8 +290,15 @@ export function PlaygroundClient({
             GET {baseUrl}/api/x/{apiSlug}
           </code>
         </div>
-        <div className="text-sm font-medium text-zinc-400">
-          Cost: <span className="text-teal-400">{priceUsdc} USDC</span>
+        <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1.5 text-sm font-medium text-zinc-400">
+          <div>
+            Cost: <span className="text-teal-400 font-semibold">{priceUsdc} USDC</span>
+          </div>
+          {fiatRates && (
+            <span className="text-xs text-zinc-500 font-mono">
+              (≈ ${(priceUsdc * 1.0).toFixed(4)} USD / €{(priceUsdc * fiatRates.eur).toFixed(4)} EUR)
+            </span>
+          )}
         </div>
       </div>
 
