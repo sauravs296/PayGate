@@ -1,5 +1,5 @@
 import { Asset, Horizon } from "@stellar/stellar-sdk";
-
+import { withHorizonRetry } from "./retry";
 
 /**
  * Gets the Horizon server instance for the given network.
@@ -36,7 +36,9 @@ export async function getUsdcRate(
   const buying = new Asset("USDC", usdcIssuer);
 
   try {
-    const orderbook = await server.orderbook(selling, buying).call();
+    const orderbook = await withHorizonRetry(() =>
+      server.orderbook(selling, buying).call()
+    );
     
     if (orderbook.asks.length === 0) {
       throw new Error("No DEX liquidity for this pair");
@@ -62,9 +64,9 @@ export async function getAmmPool(
   const server = getHorizonServer(network);
 
   try {
-    const pools = await server.liquidityPools()
-      .forAssets(assetA, assetB)
-      .call();
+    const pools = await withHorizonRetry(() =>
+      server.liquidityPools().forAssets(assetA, assetB).call()
+    );
 
     if (pools.records.length > 0) {
       return pools.records[0];
@@ -90,11 +92,9 @@ export async function findBestPath(
   const server = getHorizonServer(network);
   
   try {
-    const paths = await server.strictReceivePaths(
-      sourceAccountId,
-      destinationAsset,
-      destinationAmount
-    ).call();
+    const paths = await withHorizonRetry(() =>
+      server.strictReceivePaths(sourceAccountId, destinationAsset, destinationAmount).call()
+    );
     
     return paths.records;
   } catch (err) {
@@ -102,3 +102,4 @@ export async function findBestPath(
     throw err;
   }
 }
+
