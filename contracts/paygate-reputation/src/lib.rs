@@ -36,8 +36,8 @@ impl PayGateReputation {
     pub fn stake_api(env: Env, developer: Address, api_id: String, amount: i128) {
         developer.require_auth();
 
-        if amount < 10000000 {
-            // e.g. min 1 USDC
+        if amount < 10_000_000 {
+            // min 1 USDC (7 decimals)
             panic!("minimum stake is 1 USDC");
         }
 
@@ -49,8 +49,6 @@ impl PayGateReputation {
         let token_address: Address = env.storage().instance().get(&TOKEN).unwrap();
         let token_client = TokenClient::new(&env, &token_address);
 
-        // Contract addresses can't transfer directly unless they are the owner,
-        // so we use transfer_from to pull the funds from the developer to the contract.
         token_client.transfer(&developer, &env.current_contract_address(), &amount);
 
         let stake = ApiStake {
